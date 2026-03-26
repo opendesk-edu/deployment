@@ -1,0 +1,73 @@
+name: Dependency Update Check
+
+on:
+  schedule:
+    # Run every Monday at 6:00 UTC
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check-updates:
+    name: Check for upstream updates
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: "v3.19.0"
+
+      - name: Check upstream openDesk version
+        run: |
+          echo "### Upstream Version Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          CURRENT=$(grep "softwareVersion:" publiccode.yml | sed 's/.*: "//;s/".*//' | sed 's/-edu.*//')
+          echo "**Current fork version:** ${CURRENT}" >> $GITHUB_STEP_SUMMARY
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Check the upstream releases at:" >> $GITHUB_STEP_SUMMARY
+          echo "- https://github.com/Bundesdruckerei/opendesk/releases" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> Manual action required: Review upstream changes and merge if compatible." >> $GITHUB_STEP_SUMMARY
+
+      - name: Check Helm chart versions
+        run: |
+          echo "### Edu Chart Versions" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Chart | Configured Version |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------------------|" >> $GITHUB_STEP_SUMMARY
+
+          # ILIAS
+          if grep -q "tag:" helmfile/apps/ilias/values.yaml.gotmpl 2>/dev/null; then
+            TAG=$(grep "tag:" helmfile/apps/ilias/values.yaml.gotmpl | head -1 | awk '{print $2}' | tr -d '"')
+            echo "| ILIAS | \`${TAG}\` |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Moodle
+          if grep -q "tag:" helmfile/apps/moodle/values.yaml.gotmpl 2>/dev/null; then
+            TAG=$(grep "tag:" helmfile/apps/moodle/values.yaml.gotmpl | head -1 | awk '{print $2}' | tr -d '"')
+            echo "| Moodle | \`${TAG}\` |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # BigBlueButton
+          if grep -q "tag:" helmfile/apps/bigbluebutton/values.yaml.gotmpl 2>/dev/null; then
+            TAG=$(grep "tag:" helmfile/apps/bigbluebutton/values.yaml.gotmpl | head -1 | awk '{print $2}' | tr -d '"')
+            echo "| BigBlueButton | \`${TAG}\` |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # OpenCloud
+          if grep -q "tag:" helmfile/apps/opencloud/values.yaml.gotmpl 2>/dev/null; then
+            TAG=$(grep "tag:" helmfile/apps/opencloud/values.yaml.gotmpl | head -1 | awk '{print $2}' | tr -d '"')
+            echo "| OpenCloud | \`${TAG}\` |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Check latest releases:" >> $GITHUB_STEP_SUMMARY
+          echo "- ILIAS: https://github.com/ILIAS-eLearning/ILIAS/releases" >> $GITHUB_STEP_SUMMARY
+          echo "- Moodle: https://moodle.org/release/" >> $GITHUB_STEP_SUMMARY
+          echo "- BBB: https://github.com/bigbluebutton/bigbluebutton/releases" >> $GITHUB_STEP_SUMMARY
+          echo "- OpenCloud: https://github.com/opencloudeu/opencloud/releases" >> $GITHUB_STEP_SUMMARY

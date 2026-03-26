@@ -4,25 +4,62 @@ SPDX-FileCopyrightText: 2024 Bundesministerium des Innern und für Heimat, PG Ze
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# openDesk Deployment Automation
+# openDesk Edu
+
+> An extension of [openDesk Community Edition](https://www.opencode.de/en/opendesk) with integrated
+> educational services for universities and research institutions.
 
 <!-- TOC -->
-* [openDesk Deployment Automation](#opendesk-deployment-automation)
-  * [Overview](#overview)
-  * [Upgrades](#upgrades)
-  * [Requirements](#requirements)
-  * [Getting started](#getting-started)
-  * [Advanced customization](#advanced-customization)
-  * [Architecture](#architecture)
-  * [Testing](#testing)
-  * [Permissions](#permissions)
-  * [Releases](#releases)
-  * [Data storage](#data-storage)
-  * [Feedback](#feedback)
-  * [Development](#development)
-  * [License](#license)
-  * [Copyright](#copyright)
+- [What is openDesk Edu?](#what-is-opendesk-edu)
+  - [What's added on top of openDesk CE](#whats-added-on-top-of-opendesk-ce)
+  - [How it works](#how-it-works)
+  - [What's unchanged](#whats-unchanged)
+- [Overview](#overview)
+- [Upgrades](#upgrades)
+- [Requirements](#requirements)
+- [Getting started](#getting-started)
+- [Advanced customization](#advanced-customization)
+- [Architecture](#architecture)
+- [Testing](#testing)
+- [Permissions](#permissions)
+- [Releases](#releases)
+- [Data storage](#data-storage)
+- [Feedback](#feedback)
+- [Development](#development)
+- [License](#license)
+- [Copyright](#copyright)
 <!-- TOC -->
+
+## What is openDesk Edu?
+
+openDesk Edu takes the stock openDesk CE deployment and adds **learning management, video conferencing,
+and cloud file sharing** — the core tools universities need — all integrated with openDesk's existing
+Keycloak-based SSO and portal.
+
+### What's added on top of openDesk CE
+
+| Service | Component | Purpose |
+|---------|-----------|---------|
+| **Learning Management** | [ILIAS](https://www.ilias.de/) | Full-featured LMS with SAML SSO via Keycloak — courses, SCORM modules, assessments, forums |
+| **Learning Management** | [Moodle](https://moodle.org/) | Alternative LMS with Shibboleth authentication — plugins, gradebook, collaborative workshops |
+| **Video Conferencing** | [BigBlueButton](https://bigbluebutton.org/) | Online lectures, tutorials, and meetings with SAML SSO — recording, breakout rooms, whiteboard |
+| **Cloud File Sharing** | [OpenCloud](https://www.nextcloud.com/) (Nextcloud) | Separate Nextcloud instance for file sharing with OIDC — Collabora integration, user management |
+
+### How it works
+
+- **SSO Integration**: All educational services authenticate through openDesk's existing Keycloak instance
+  using SAML 2.0 (ILIAS, BBB, Moodle) or OIDC (OpenCloud). Users sign in once via the openDesk portal.
+- **Portal Integration**: Custom SVG icons and portal tiles give users direct access to ILIAS, Moodle,
+  BigBlueButton, and OpenCloud alongside the standard openDesk applications.
+- **Helm Charts**: Each educational service has its own Helm chart with configurable values, Shibboleth
+  SAML SP configuration, ingress rules, and persistence settings.
+- **Backup**: k8up-based backup schedules for educational service data (separate from core openDesk backups).
+
+### What's unchanged
+
+All core openDesk CE components remain intact — Element, Nextcloud, Open-Xchange, XWiki, OpenProject,
+Jitsi, CryptPad, Notes, Collabora, and the full Nubus IAM stack. This is a **superset** of openDesk CE,
+not a fork.
 
 ## Overview
 
@@ -45,6 +82,10 @@ openDesk currently features the following functional main components:
 | Project management   | OpenProject                 | GPL-3.0-only                                                                           | [17.2.1](https://www.openproject.org/docs/release-notes/17-2-1/)                              | [For the most recent release](https://www.openproject.org/docs/user-guide/)                                                           |
 | Videoconferencing    | Jitsi                       | Apache-2.0                                                                             | [2.0.10590](https://github.com/jitsi/jitsi-meet/releases/tag/stable%2Fjitsi-meet_10590)       | [For the most recent  release](https://jitsi.github.io/handbook/docs/category/user-guide/)                                            |
 | Weboffice            | Collabora                   | MPL-2.0                                                                                | [25.04.8](https://www.collaboraoffice.com/code-25-04-release-notes/)                          | Online documentation available from within the installed application; [Additional resources](https://sdk.collaboraonline.com/)        |
+| **LMS**              | **ILIAS**                   | **GPL-3.0-or-later**                                                                   | [7.28](https://github.com/ILIAS-eLearning/ILIAS/releases)                                      | [ILIAS Documentation](https://docu.ilias.de/)                                                                                         |
+| **LMS**              | **Moodle**                  | **GPL-3.0-or-later**                                                                   | [4.4](https://moodle.org/release/)                                                              | [Moodle Docs](https://docs.moodle.org/)                                                                                              |
+| **Video conferencing** | **BigBlueButton**          | **LGPL-3.0-or-later**                                                                  | [2.7](https://github.com/bigbluebutton/bigbluebutton/releases)                                 | [BigBlueButton Docs](https://docs.bigbluebutton.org/)                                                                                |
+| **File sharing**     | **OpenCloud** (Nextcloud)   | **AGPL-3.0-or-later**                                                                  | [32.0.6](https://nextcloud.com/de/changelog/#32-0-6)                                            | [Nextcloud 32](https://docs.nextcloud.com/)                                                                                           |
 
 While not all components are perfectly designed for the execution inside containers, one of the project's objectives is to
 align the applications with best practices regarding container design and operations.

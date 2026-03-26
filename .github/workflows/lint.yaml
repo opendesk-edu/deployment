@@ -18,35 +18,14 @@ jobs:
 
       - name: Lint YAML files
         run: |
-          yamllint \
-            --config-data "{extends: relaxed, rules: {line-length: {max: 160}, indentation: {spaces: 2}}}" \
-            helmfile/ docs/ \
-            || true
-          # Non-blocking: reports issues but doesn't fail on upstream style differences
-
-  helmfile-lint:
-    name: Helmfile Template
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Helm
-        uses: azure/setup-helm@v4
-        with:
-          version: "v3.19.0"
-
-      - name: Install helmfile
-        run: |
-          wget -qO- https://github.com/helmfile/helmfile/releases/download/v1.0.0-rc.12/helmfile_1.0.0-rc.12_linux_amd64.tar.gz | tar xz
-          sudo mv helmfile /usr/local/bin/
-
-      - name: Helmfile template (dry run)
-        env:
-          OPENDESK_ENTERPRISE: "false"
-        run: |
-          helmfile -e default template 2>&1 | head -100 || true
-          # Non-blocking: helmfile template requires secrets/config that aren't available in CI
-          # This verifies the helmfile structure is parseable
+          yamllint -c .yamllint \
+            helmfile/charts/ilias/values.yaml \
+            helmfile/charts/moodle/values.yaml \
+            helmfile/charts/bigbluebutton/values.yaml \
+            helmfile/charts/opencloud/values.yaml \
+            docs/ \
+            .github/ \
+            publiccode.yml
 
   helm-lint:
     name: Helm Lint (edu charts)
@@ -63,17 +42,9 @@ jobs:
 
       - name: Install Helm
         uses: azure/setup-helm@v4
-        with:
-          version: "v3.19.0"
 
       - name: Helm lint
-        working-directory: ${{ github.workspace }}
-        run: |
-          if [ -f "${{ matrix.chart }}/Chart.yaml" ]; then
-            helm lint "${{ matrix.chart }}" || echo "::warning::Helm lint reported issues in ${{ matrix.chart }}"
-          else
-            echo "No Chart.yaml found in ${{ matrix.chart }}, skipping"
-          fi
+        run: helm lint "${{ matrix.chart }}"
 
   spellcheck:
     name: Spell Check
@@ -86,35 +57,21 @@ jobs:
 
       - name: Run cspell
         run: |
-          if [ -f "cspell.json" ]; then
-            cspell --config cspell.json \
-              "README.md" "ROADMAP.md" "CONTRIBUTING.md" \
-              "docs/university-apps-concept.md" "docs/external-services.md" \
-              "docs/getting-started.md" \
-              || echo "::warning::Spell check found issues (review above)"
-          else
-            echo "No cspell.json found, skipping"
-          fi
+          cspell --config cspell.json \
+            "README.md" "ROADMAP.md" "CONTRIBUTING.md" \
+            "docs/university-apps-concept.md" "docs/external-services.md" \
+            "docs/getting-started.md" \
+            ".github/" \
+            --no-progress
 
   check-secrets:
     name: Secret Leak Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
         with:
-          fetch-depth: 0
-
-      - name: Install trufflehog
-        run: pip install trufflehog3 || pip install trufflehog
-
-      - name: Scan for secrets
-        run: |
-          # Check current HEAD for leaked secrets in edu-specific files
-          trufflehog --regex --no-update filesystem . \
-            --include "helmfile/apps/ilias/" \
-            --include "helmfile/apps/moodle/" \
-            --include "helmfile/apps/bigbluebutton/" \
-            --include "helmfile/apps/opencloud/" \
-            --include "docs/external-services/" \
-            --include "docs/university-apps-concept.md" \
-            || echo "::warning::Potential secrets detected (review above)"
+          path: .
+          extra_args: --only-verified --filter "path=helmfile/apps/" --filter "path=docs/external-services/ilias-deployment-guide.md"

@@ -45,7 +45,7 @@ deploy openDesk onto your Kubernetes infrastructure.
 
 ## Requirements
 
-Detailed system requirements are covered on the [requirements](./docs/requirements.md) page.
+Detailed system requirements are covered on the [requirements](./requirements.md) page.
 
 ## Customize environment
 
@@ -152,7 +152,7 @@ apps:
 ## Private registries
 
 By default, Helm charts and container images are fetched from OCI registries. These registries can be found in most cases
-in the [openDesk/component section on openCode](https://gitlab.opencode.de/bmi/opendesk/components).
+in the [openDesk component registries](https://registry.opencode.de/harbor/projects) (upstream) or your preferred OCI registry.
 
 For untouched upstream artifacts that do not belong to a functional component's core, we use upstream registries
 like Docker Hub.
@@ -250,7 +250,7 @@ ingress:
 
 > [!note]
 > Currently, the only Ingress controllers supported are `haproxy-ingress.github.io` and the deprecated `ingress-nginx`.
-> See [requirements.md](./docs/requirements.md) for more details.
+> See [requirements.md](./requirements.md) for more details.
 
 ### Container runtime
 
@@ -285,7 +285,7 @@ cluster:
 
 ## Customize deployment
 
-While openDesk configures the applications with meaningful defaults, you can check [functional.md](./docs/functional.md) if you want to change these defaults to better match your use case.
+While openDesk configures the applications with meaningful defaults, you can check [functional.md](./functional.md) if you want to change these defaults to better match your use case.
 
 ## Connectivity
 
@@ -506,7 +506,7 @@ kubectl -n ${NAMESPACE} get secret ums-nubus-credentials -o jsonpath='{.data.adm
 ```
 
 Using the aforementioned account, you can either create new accounts manually or make use of the
-[openDesk User Importer](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/images/user-import/)
+[openDesk User Importer](https://github.com/Bundesdruckerei/opendesk-user-import)
 script or container.
 
 In the following snippet, after defining the values of the first three lines and executing the command,

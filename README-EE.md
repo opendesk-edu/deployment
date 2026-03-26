@@ -3,6 +3,8 @@ SPDX-FileCopyrightText: 2024-2025 Zentrum für Digitale Souveränität der Öffe
 SPDX-License-Identifier: Apache-2.0
 -->
 
+> **Note:** This document describes the upstream openDesk Enterprise Edition by ZenDiS. The openDesk Edu fork is based on the Community Edition and does not require enterprise access or subscriptions.
+
 # openDesk Enterprise Edition
 
 <!-- TOC -->

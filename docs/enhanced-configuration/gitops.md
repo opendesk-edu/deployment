@@ -13,8 +13,8 @@ SPDX-License-Identifier: Apache-2.0
     * [Option 2: Helmfile plugin](#option-2-helmfile-plugin)
 <!-- TOC -->
 
-The recommended deployment method for openDesk is via Helmfile. This can be done "by hand", via CI/CD (Gitlab) or using
-the [GitOps](https://about.gitlab.com/topics/gitops/) approach with tools like [Argo CD](https://argoproj.github.io/cd/).
+The recommended deployment method for openDesk is via Helmfile. This can be done "by hand", via CI/CD or using
+the [GitOps](https://opencode.de/) approach with tools like [Argo CD](https://argoproj.github.io/cd/).
 
 This documentation will use Argo CD to explain how to deploy openDesk GitOps-style.
 
@@ -25,8 +25,8 @@ This documentation will use Argo CD to explain how to deploy openDesk GitOps-sty
 
 ## ArgoCD
 
-We are continuously improving our Argo CD support, please share you experience with Argo CD deployments e.g. by [creating
-a ticket](https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk/-/issues).
+We are continuously improving our Argo CD support, please share your experience with Argo CD deployments e.g. by [creating
+an issue](https://github.com/tobias-weiss-ai-xr/opendesk-edu/issues).
 
 There are two options to deploy openDesk via Argo CD described in the following sections.
 
@@ -41,12 +41,11 @@ This option requires a preprocessing step before using Argo CD. This step requir
 deployment into Kubernetes YAML manifest, to do so you need to execute the helmfile binary:
 
 ```shell
-helmfile template > opendesk.yaml
+helmfile template > manifests.yaml
 ```
 
 References:
 - [Helmfile CLI documentation](https://helmfile.readthedocs.io/en/latest/#cli-reference)
-- [Generate K8s YAML Manifests for openDesk](https://gitlab.opencode.de/bmi/opendesk/deployment/options/generate-k8s-yaml-manifests)
 
 Afterwards, you can use the resulting manifests within a standard Argo CD workflow.
 
@@ -61,7 +60,7 @@ It is possible to deploy openDesk via Argo CD with the community developed
 [Helmfile plugin](https://github.com/travisghansen/argo-cd-helmfile).
 
 You can find an example for this approach in the
-[Argo CD Deployments](https://gitlab.opencode.de/bmi/opendesk/deployment/options/argocd-deploy) repository.
+[Argo CD Helmfile plugin documentation](https://github.com/travisghansen/argo-cd-helmfile).
 It contains an example Helm chart (`opendesk-parent`) to create Argo CD Applications via a Helm chart (`opendesk`)
 according to `app of apps pattern`. It uses sync waves to ensure the deployment matches requirements and the update sequence
 for openDesk is satisfied.

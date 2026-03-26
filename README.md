@@ -151,7 +151,7 @@ drop-in alternatives, not replacements. This is a **superset** of openDesk CE, n
 | 🔐 Authentication | [Keycloak](https://www.keycloak.org/) (SAML 2.0 + OIDC) |
 | 🎓 SAML SP | [Shibboleth](https://www.shibboleth.net/) (ILIAS, Moodle, BBB) |
 | 💾 Backup | [k8up](https://k8up.io/) (restic + Kubernetes operator) |
-| 🔒 Certificates | [openDesk Certificates](https://gitlab.opencode.de/bmi/opendesk/components/platform-development/charts/opendesk-certificates) |
+| 🔒 Certificates | [openDesk Certificates](https://github.com/Bundesdruckerei/opendesk-certificates) |
 
 ---
 

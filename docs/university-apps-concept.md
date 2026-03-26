@@ -47,7 +47,7 @@ The following university-specific applications have been integrated into OpenDes
 
 - **Integration**: SAML 2.0 via Shibboleth SP → Keycloak IdP
 - **Portal Tile**: Located in the "Lernen" (Learning) category
-- **Custom Docker Image**: `your-org/moodle:4.4-apache-shibboleth` (pre-installed with Shibboleth SP)
+- **Custom Docker Image**: `ghcr.io/<your-org>/moodle:4.4-apache-shibboleth` (pre-installed with Shibboleth SP)
 - **Backend**: PostgreSQL database, Ceph RBD storage for course data (100Gi)
 - **Admin Interface**: Whitelisted with LDAP authentication
 - **Status**: Fully deployed and operational
@@ -58,7 +58,7 @@ The following university-specific applications have been integrated into OpenDes
 **BigBlueButton** is a video conferencing platform designed for online lectures, seminars, and virtual classrooms.
 
 - **Integration**: SAML 2.0 via Shibboleth SP → Keycloak IdP
-- **Custom Docker Image**: `your-org/bbb:2.7-shibboleth`
+- **Custom Docker Image**: `ghcr.io/<your-org>/bbb:2.7-shibboleth`
 - **Storage**: CephFS for recordings (500Gi, RWX for multi-node access)
 - **Portal Tile**: Located in the "Video" category
 - **Status**: Fully deployed and operational
@@ -71,7 +71,7 @@ The following university-specific applications have been integrated into OpenDes
 - **Integration**: OIDC via Keycloak (OpenCloud is OIDC-native)
 - **Portal Tile**: Located in the "Anwendungen" (Applications) category
 - **URL**: `opencloud.opendesk.example.com`
-- **Custom Docker Image**: `your-org/opencloud:v1.0.0`
+- **Custom Docker Image**: `ghcr.io/<your-org>/opencloud:v1.0.0`
 - **OpenXchange Integration**: Enabled via `filestorage_owncloud_oauth` capability
 - **Status**: Deployment in progress (fixes ongoing)
 
@@ -177,7 +177,7 @@ Integrating university applications into OpenDesk required several technical dec
 **Solution**: Deploy **Shibboleth Service Provider (SP)** as an Apache module alongside each application. The Shibboleth SP translates SAML assertions from Keycloak into HTTP headers, allowing the application to authenticate users without code changes.
 
 **Implementation**:
-- Custom Docker images for ILIAS, Moodle, and BigBlueButton with Shibboleth SP pre-installed (`your-org/ilias:7.28-shibboleth`, `your-org/moodle:4.4-apache-shibboleth`, `your-org/bbb:2.7-shibboleth`)
+- Custom Docker images for ILIAS, Moodle, and BigBlueButton with Shibboleth SP pre-installed (`ghcr.io/<your-org>/ilias:7.28-shibboleth`, `ghcr.io/<your-org>/moodle:4.4-apache-shibboleth`, `ghcr.io/<your-org>/bbb:2.7-shibboleth`)
 - Configuration files (`shibboleth2.xml`) tailored to each application’s requirements
 
 
@@ -204,7 +204,7 @@ Integrating university applications into OpenDesk required several technical dec
 - Direct integration with OpenXchange via the `filestorage_owncloud_oauth` capability
 
 **Implementation**:
-- Custom Docker image (`your-org/opencloud:v1.0.0`)
+- Custom Docker image (`ghcr.io/<your-org>/opencloud:v1.0.0`)
 - OIDC integration with Keycloak
 - Portal tile in the "Anwendungen" (Applications) category
 

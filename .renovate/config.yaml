@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ---
 # Platform type of repository
-platform: "gitlab"
+platform: "github"
 
 # Enable onboarding merge request
 onboarding: false
@@ -16,11 +16,11 @@ requireConfig: "ignored"
 # List of Repositories
 # See: https://docs.renovatebot.com/configuration-options/
 repositories:
-  - repository: "bmi/opendesk/deployment/opendesk"
+  - repository: "tobias-weiss-ai-xr/opendesk-edu"
     # Set the branch to read current dependency state from, this is especially useful during
     # renovate setup when looking into your feature branch or when your default branch is
     # not the one you want to check on.
-    baseBranches: [ "develop" ]
+    baseBranches: [ "main" ]
     # Set a limit for the maximum number of parallel MRs (default 10)
     prConcurrentLimit: 50
     # Prefix to use for all branch names created by renovate bot (default: "renovate/")

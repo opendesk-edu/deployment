@@ -156,6 +156,57 @@ service.
 |                  |                  |           | Host      | `cache.umsSelfservice.host`  | `memcached`      |
 |                  |                  |           | Port      | `cache.umsSelfservice.port`  | `11211`          |
 
+## Education services (openDesk Edu)
+
+The following external services are required by the education-focused applications added in openDesk Edu.
+Configuration follows the same pattern as the upstream services above.
+
+### Database
+
+| Component        | Name    | Parameter                        | Key                                           | Default        |
+| ---------------- | ------- | -------------------------------- | --------------------------------------------- | -------------- |
+| ILIAS            | ILIAS   |                                  |                                               |                |
+|                  |         | Type                             | `databases.ilias.type`                        | `postgresql`   |
+|                  |         | Name                             | `databases.ilias.name`                        | `ilias`        |
+|                  |         | Host                             | `databases.ilias.host`                        | `postgresql`   |
+|                  |         | Port                             | `databases.ilias.port`                        | `5432`         |
+|                  |         | Username                         | `databases.ilias.username`                    | `ilias_user`   |
+|                  |         | Password                         | `databases.ilias.password`                    |                |
+| Moodle           | Moodle  |                                  |                                               |                |
+|                  |         | Type                             | `databases.moodle.type`                       | `postgresql`   |
+|                  |         | Name                             | `databases.moodle.name`                       | `moodle`       |
+|                  |         | Host                             | `databases.moodle.host`                       | `postgresql`   |
+|                  |         | Port                             | `databases.moodle.port`                       | `5432`         |
+|                  |         | Username                         | `databases.moodle.username`                   | `moodle_user`  |
+|                  |         | Password                         | `databases.moodle.password`                   |                |
+| BigBlueButton    | BBB     |                                  |                                               |                |
+|                  |         | Type                             | `databases.bbb.type`                          | `postgresql`   |
+|                  |         | Name                             | `databases.bbb.name`                          | `bigbluebutton`|
+|                  |         | Host                             | `databases.bbb.host`                          | `postgresql`   |
+|                  |         | Port                             | `databases.bbb.port`                          | `5432`         |
+|                  |         | Username                         | `databases.bbb.username`                      | `bbb_user`     |
+|                  |         | Password                         | `databases.bbb.password`                      |                |
+
+### Object storage
+
+| Component     | Name    | Parameter                    | Key                                  | Default     |
+| ------------- | ------- | ---------------------------- | ------------------------------------ | ----------- |
+| ILIAS         | ILIAS   |                              |                                      |             |
+|               |         | Backend                      | `objectstores.ilias.backend`         | `s3`        |
+|               |         | Bucket                       | `objectstores.ilias.bucket`          | `ilias-data`|
+|               |         | Endpoint                     | `objectstores.ilias.endpoint`        |             |
+|               |         | Region                       | `objectstores.ilias.region`          |             |
+|               |         | Secret                       | `objectstores.ilias.secret`          |             |
+|               |         | Username                     | `objectstores.ilias.username`        |             |
+
+### Cache
+
+| Component     | Name    | Type  | Parameter                    | Key                        | Default          |
+| ------------- | ------- | ----- | ---------------------------- | -------------------------- | ---------------- |
+| BigBlueButton | BBB     | Redis |                              |                            |                  |
+|               |         |       | Host                         | `cache.bbb.host`           | `redis-headless` |
+|               |         |       | Port                         | `cache.bbb.port`           | `6379`           |
+
 ## Footnotes
 
 [^1] The upstream product documentation provides some valuable information regarding database migrations:

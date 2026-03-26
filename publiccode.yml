@@ -29,7 +29,7 @@ softwareType: "standalone/web"
 url: "https://github.com/tobias-weiss-ai-xr/opendesk-edu"
 logo: ".opencode/openDesk-logo-rgb-color.svg"
 isBasedOn:
-  - "https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk"
+  - "https://github.com/Bundesdruckerei/opendesk"
 maintenance:
   type: "community"
 

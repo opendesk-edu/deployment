@@ -5,7 +5,7 @@ replicaCount: 2
 
 image:
   registry: docker.io
-  repository: your-org/opencloud
+  repository: <your-org>/opencloud
   tag: v1.0.0
   pullPolicy: IfNotPresent
 

@@ -30,6 +30,7 @@
 | Draw.io diagramming (stateless) | ✅ |
 | Excalidraw whiteboard (stateless) | ✅ |
 | Self-Service Password (LDAP) | ✅ |
+| SOGo groupware (alternative to OX App Suite) | 🚧 |
 
 ---
 
@@ -443,7 +444,7 @@ Growing EU requirement via European Open Science Cloud (EOSC).
 ## Timeline
 
 ```
-2026 Q2   v1.0  Core platform + 12 education services (ILIAS, Moodle, BBB, OpenCloud, Etherpad, BookStack, Planka, Zammad, LimeSurvey, Draw.io, Excalidraw, SSP)
+2026 Q2   v1.0  Core platform + 13 education services (ILIAS, Moodle, BBB, OpenCloud, SOGo, Etherpad, BookStack, Planka, Zammad, LimeSurvey, Draw.io, Excalidraw, SSP)
           v1.1  DFN-AAI federation + semester lifecycle + logout
 2026 Q3   v1.2  Opencast + Tobira lecture recording
 2026 Q4   v1.5  HISinOne/Marvin campus management integration (phase 1: identity)

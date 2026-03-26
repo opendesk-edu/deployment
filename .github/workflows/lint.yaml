@@ -75,6 +75,7 @@ jobs:
           - helmfile/charts/drawio
           - helmfile/charts/excalidraw
           - helmfile/charts/self-service-password
+          - helmfile/charts/sogo
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -172,6 +173,7 @@ jobs:
             --include "helmfile/apps/drawio/" \
             --include "helmfile/apps/excalidraw/" \
             --include "helmfile/apps/self-service-password/" \
+            --include "helmfile/apps/sogo/" \
             --include "docs/external-services/ilias-deployment-guide.md" \
             --ignore "opendesk.example.com" \
             --ignore "example.com" \

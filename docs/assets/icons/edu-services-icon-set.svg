@@ -1,0 +1,47 @@
+<svg width="800" height="200" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon set preview showing all edu service icons -->
+  <rect width="800" height="200" fill="#F5F5F5"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="16" fill="#341291" font-weight="bold">openDesk Edu Icon Set</text>
+  
+  <!-- ILIAS -->
+  <g transform="translate(50, 50)">
+    <rect width="111" height="111" rx="20" fill="white"/>
+    <path d="M55.5 30L25 45L55.5 60L86 45L55.5 30Z" fill="#571EFA"/>
+    <path d="M30 75L55.5 60L81 75V85H30V75Z" fill="#341291"/>
+    <path d="M55.5 60L30 75V45L55.5 30L81 45V75L55.5 60Z" fill="#341291"/>
+    <circle cx="86" cy="45" r="4" fill="#927AFA"/>
+    <text x="55.5" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#341291">ILIAS</text>
+  </g>
+  
+  <!-- Moodle -->
+  <g transform="translate(200, 50)">
+    <rect width="111" height="111" rx="20" fill="white"/>
+    <path d="M30 70C30 70 35 55 45 50C55 45 60 35 65 35C70 35 75 40 75 50" stroke="#571EFA" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="30" cy="70" r="4" fill="#571EFA"/>
+    <circle cx="45" cy="50" r="4" fill="#571EFA"/>
+    <circle cx="65" cy="35" r="4" fill="#571EFA"/>
+    <circle cx="75" cy="50" r="4" fill="#341291"/>
+    <text x="55.5" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#341291">Moodle</text>
+  </g>
+  
+  <!-- BigBlueButton -->
+  <g transform="translate(350, 50)">
+    <rect width="111" height="111" rx="20" fill="white"/>
+    <rect x="25" y="30" width="61" height="40" rx="4" fill="#571EFA"/>
+    <rect x="29" y="34" width="20" height="16" rx="2" fill="white" opacity="0.8"/>
+    <rect x="53" y="34" width="28" height="16" rx="2" fill="white" opacity="0.6"/>
+    <path d="M55.5 78V83C55.5 86 53 88 50 88C47 88 44.5 86 44.5 83V78" stroke="#341291" stroke-width="3" stroke-linecap="round"/>
+    <rect x="44.5" y="68" width="11" height="12" rx="3" fill="#341291"/>
+    <text x="55.5" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#341291">BigBlueButton</text>
+  </g>
+  
+  <!-- OpenCloud -->
+  <g transform="translate(500, 50)">
+    <rect width="111" height="111" rx="20" fill="white"/>
+    <path d="M55.5 30C65 30 72 37 72 45C72 46 71 47 71 48C78 48 83 53 83 60C83 67 77 72 70 72H35C28 72 23 67 23 60C23 53 30 48 35 48C35 40 42 35 50 35C52 35 54 36 55 37" fill="#571EFA"/>
+    <path d="M40 50H65C68 50 70 52 70 55V63C70 66 68 68 65 68H40C37 68 35 66 35 63V50C35 47 37 45 40 45H45L50 50H65" fill="#341291"/>
+    <text x="55.5" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#341291">OpenCloud</text>
+  </g>
+</svg>

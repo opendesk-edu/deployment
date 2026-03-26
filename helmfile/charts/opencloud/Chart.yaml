@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
+# SPDX-License-Identifier: Apache-2.0
+apiVersion: v2
+name: opencloud
+description: A Helm chart for OpenCloud file sync server with OIDC authentication
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

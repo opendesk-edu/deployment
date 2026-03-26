@@ -1,0 +1,62 @@
+# SPDX-FileCopyrightText: 2023 Bundesministerium des Innern und für Heimat, PG ZenDiS "Projektgruppe für Aufbau ZenDiS"
+# SPDX-License-Identifier: Apache-2.0
+.vscode
+.idea
+.yamllint
+
+# Ignore changes to sample environments
+helmfile/environments/dev/*.yaml.gotmpl
+helmfile/environments/test/*.yaml.gotmpl
+helmfile/environments/prod/*.yaml.gotmpl
+helmfile/environments/dev/*.yaml
+helmfile/environments/test/*.yaml
+helmfile/environments/prod/*.yaml
+helmfile/environments/dev/*/
+helmfile/environments/test/*/
+helmfile/environments/prod/*/
+!helmfile/environments/dev/sample.yaml.gotmpl
+!helmfile/environments/test/sample.yaml.gotmpl
+!helmfile/environments/prod/sample.yaml.gotmpl
+
+# Ignore in CI generated files
+.kyverno/opendesk.yaml
+.kyverno/kyverno-test.yaml
+
+# Ignore editor/OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Ignore ./log directory and *.log files
+logs
+*.log
+
+# Ignore backup files, e.g. created by the script that eases the local chart development
+*.bak
+
+# Ignore helmfile build artifacts
+helmfile-child.yaml-*/
+*.tgz
+
+# Ignore sensitive credential files
+k8up-*.yaml
+*secrets*.yaml
+*credentials*.yaml
+*.env
+*.env.*
+*.pem
+*.key
+*.crt
+*.p12
+
+# Internal tooling
+.sisyphus/
+
+# Environment-specific configs
+helmfile/environments/hrz/
+
+# Test artifacts
+tests/e2e/
+test_e2e.js

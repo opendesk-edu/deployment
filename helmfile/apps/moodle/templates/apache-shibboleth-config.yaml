@@ -1,0 +1,52 @@
+# SPDX-FileCopyrightText: 2026 Zentrum für Digitale Souveränität der Öffentlichen Verwaltung (ZenDiS) GmbH
+# SPDX-License-Identifier: Apache-2.0
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: moodle-apache-shibboleth-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: moodle
+    app.kubernetes.io/component: shibboleth-sp
+    app.kubernetes.io/part-of: opendesk
+data:
+  shibboleth.conf: |
+    ServerName moodle.opendesk.example.com
+    UseCanonicalName On
+    ShibCompatValidUser Off
+    LogLevel mod_shib:debug
+
+    <Location /Shibboleth.sso>
+      SetHandler shib
+      AuthType None
+      Require all granted
+    </Location>
+
+    <IfModule mod_alias.c>
+      <Location /shibboleth-sp>
+        AuthType None
+        Require all granted
+      </Location>
+      Alias /shibboleth-sp/main.css /usr/share/shibboleth/main.css
+    </IfModule>
+
+     <Location /auth/shibboleth>
+       AuthType shibboleth
+       ShibRequestSetting requireSession 1
+       ShibRequestSetting applicationId default
+       require valid-user
+     </Location>
+
+     <Location /admin>
+       AuthType Basic
+       AuthName "Admin Portal Access"
+       AuthLDAPBindDN "cn=admin,dc=swp-ldap,dc=internal"
+       AuthLDAPBindPasswordFile "/var/secrets/ldap_admin_pass"
+       AuthLDAPURL "ldap://ums-ldap-server-primary/dc=swp-ldap,dc=internal?uid"
+       require ldap-group cn=Domain Admins,cn=groups,dc=swp-ldap,dc=internal
+     </Location>
+
+     <Location /admin/bbb-shared-secret>
+       require ldap-group cn=Domain Admins,cn=groups,dc=swp-ldap,dc=internal
+     </Location>

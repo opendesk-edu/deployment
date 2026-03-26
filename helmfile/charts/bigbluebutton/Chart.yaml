@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bigbluebutton
+description: A Helm chart for BigBlueButton recordings storage
+type: application
+version: 0.1.0
+appVersion: "2.7.0"

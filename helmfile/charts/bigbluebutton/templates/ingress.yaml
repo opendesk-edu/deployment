@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+    haproxy-ingress.github.io/ssl-redirect: "true"
+    haproxy-ingress.github.io/timeout-server: "120000ms"
+    haproxy-ingress.github.io/timeout-client: "120000ms"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: {{ .Values.ingress.className | quote }}
+  rules:
+    - host: {{ .Values.ingress.hosts.host | quote }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.hosts.paths.path | quote }}
+            pathType: {{ .Values.ingress.hosts.paths.pathType | quote }}
+            backend:
+              service:
+                name: {{ .Release.Name }}
+                port:
+                  number: {{ .Values.service.externalPort }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.hosts.host | quote }}
+      secretName: {{ .Values.ingress.tls.secretName | quote }}

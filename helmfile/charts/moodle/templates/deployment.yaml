@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "moodle.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "moodle.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.moodle.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "moodle.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "moodle.selectorLabels" . | nindent 8 }}
+        {{- with .Values.commonAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "moodle.serviceAccountName" . }}
+      containers:
+        - name: moodle
+          image: "{{ .Values.moodle.image }}:{{ .Values.moodle.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          {{- with .Values.containerSecurityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          env:
+            - name: MOODLE_USERNAME
+              value: {{ .Values.moodle.moodleUsername | quote }}
+            - name: MOODLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-moodle-secrets
+                  key: moodle-password
+            - name: MOODLE_EMAIL
+              value: {{ .Values.moodle.moodleEmail | quote }}
+            - name: MOODLE_SITE_NAME
+              value: {{ .Values.moodle.moodleSiteName | quote }}
+            - name: MOODLE_SKIP_INSTALL
+              value: {{ .Values.moodle.moodleSkipInstall | quote }}
+            - name: BITNAMI_DEBUG
+              value: "false"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: moodle-data
+              mountPath: /bitnami/moodle
+      volumes:
+        - name: moodle-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-moodle-data
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

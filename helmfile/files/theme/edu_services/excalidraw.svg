@@ -1,18 +1,8 @@
 <svg width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="0.5" y="0.5" width="110" height="110" rx="20" fill="white"/>
-  <g>
-    <!-- Canvas/drawing area -->
-    <rect x="25" y="30" width="60" height="50" rx="4" fill="#C084FC" opacity="0.2"/>
-    <rect x="25" y="30" width="60" height="50" rx="4" stroke="#A855F7" stroke-width="2" fill="none"/>
-    <!-- Sketchy square on canvas -->
-    <rect x="34" y="40" width="18" height="14" rx="1" stroke="#A855F7" stroke-width="2" fill="none" opacity="0.6"/>
-    <!-- Sketchy circle on canvas -->
-    <circle cx="62" cy="62" r="10" stroke="#A855F7" stroke-width="2" fill="none" opacity="0.6"/>
-    <!-- Pencil -->
-    <rect x="68" y="22" width="8" height="40" rx="2" fill="#A855F7" transform="rotate(25 72 42)"/>
-    <!-- Pencil tip -->
-    <path d="M83 60L87 66L79 62Z" fill="#A855F7" transform="rotate(25 72 42)"/>
-    <!-- Pencil eraser -->
-    <rect x="68" y="20" width="8" height="6" rx="2" fill="#C084FC" transform="rotate(25 72 42)"/>
-  </g>
+  <!-- Canvas rectangle -->
+  <rect x="30" y="30" width="50" height="40" rx="2" fill="#571EFA"/>
+  <!-- Diagonal pencil -->
+  <path d="M40 60L60 40L70 50L50 70L40 60Z" fill="#341291"/>
+  <path d="M55 45L60 40L65 45L55 45Z" fill="#927AFA"/>
 </svg>

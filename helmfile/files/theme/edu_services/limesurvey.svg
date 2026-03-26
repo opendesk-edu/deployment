@@ -1,19 +1,24 @@
 <svg width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="0.5" y="0.5" width="110" height="110" rx="20" fill="white"/>
-  <g>
-    <!-- Clipboard base -->
-    <rect x="28" y="28" width="55" height="60" rx="4" fill="#84CC16"/>
-    <!-- Clipboard clip -->
-    <rect x="44" y="23" width="22" height="10" rx="3" fill="#84CC16"/>
-    <rect x="48" y="25" width="14" height="6" rx="2" fill="white" opacity="0.6"/>
-    <!-- Checkmark rows -->
-    <rect x="37" y="42" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
-    <path d="M41 50L44 53L51 46" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <rect x="58" y="45" width="18" height="3" rx="1.5" fill="white" opacity="0.7"/>
-    <rect x="58" y="51" width="14" height="3" rx="1.5" fill="white" opacity="0.5"/>
-    <rect x="37" y="63" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
-    <path d="M41 71L44 74L51 67" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <rect x="58" y="66" width="18" height="3" rx="1.5" fill="white" opacity="0.7"/>
-    <rect x="58" y="72" width="14" height="3" rx="1.5" fill="white" opacity="0.5"/>
-  </g>
+  <!-- Clipboard body -->
+  <path d="M35 32L55 22L75 22L75 80L35 80L35 32Z" fill="#571EFA"/>
+  <!-- Clipboard top fold -->
+  <path d="M35 32L75 32L70 27L40 27L35 32Z" fill="#341291"/>
+  <!-- Clipboard clip -->
+  <rect x="48" y="20" width="14" height="8" rx="2" fill="#341291"/>
+  <!-- Checkbox row 1 -->
+  <rect x="42" y="38" width="10" height="10" rx="2" fill="#341291"/>
+  <path d="M44 43L46 45.5L51 41" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="57" y="40" width="12" height="3" rx="1.5" fill="white"/>
+  <rect x="57" y="46" width="9" height="3" rx="1.5" fill="#927AFA"/>
+  <!-- Checkbox row 2 -->
+  <rect x="42" y="52" width="10" height="10" rx="2" fill="#341291"/>
+  <path d="M44 57L46 59.5L51 55" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="57" y="54" width="12" height="3" rx="1.5" fill="white"/>
+  <rect x="57" y="60" width="9" height="3" rx="1.5" fill="#927AFA"/>
+  <!-- Checkbox row 3 -->
+  <rect x="42" y="66" width="10" height="10" rx="2" fill="#341291"/>
+  <path d="M44 71L46 73.5L51 69" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="57" y="68" width="12" height="3" rx="1.5" fill="white"/>
+  <rect x="57" y="74" width="9" height="3" rx="1.5" fill="#927AFA"/>
 </svg>

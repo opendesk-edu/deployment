@@ -1,15 +1,10 @@
 <svg width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="0.5" y="0.5" width="110" height="110" rx="20" fill="white"/>
-  <g>
-    <!-- Headset band -->
-    <path d="M33 58C33 42 43 30 55.5 30C68 30 78 42 78 58" stroke="#EF4444" stroke-width="7" stroke-linecap="round" fill="none"/>
-    <!-- Left earpiece -->
-    <rect x="27" y="55" width="12" height="18" rx="5" fill="#EF4444"/>
-    <!-- Right earpiece -->
-    <rect x="72" y="55" width="12" height="18" rx="5" fill="#EF4444"/>
-    <!-- Microphone -->
-    <path d="M39 73L39 80C39 85 46 88 55.5 88C65 88 72 85 72 80L72 73" stroke="#F87171" stroke-width="3" stroke-linecap="round" fill="none"/>
-    <!-- Mic node -->
-    <circle cx="55.5" cy="85" r="3" fill="#F87171"/>
-  </g>
+  <!-- Headset arc -->
+  <path d="M35 55C35 45 45 35 55 35C65 35 75 45 75 55C75 65 65 75 55 75C45 75 35 65 35 55Z" fill="#341291"/>
+  <!-- Earpieces -->
+  <circle cx="35" cy="55" r="8" fill="#571EFA"/>
+  <circle cx="75" cy="55" r="8" fill="#571EFA"/>
+  <circle cx="35" cy="55" r="5" fill="white"/>
+  <circle cx="75" cy="55" r="5" fill="white"/>
 </svg>

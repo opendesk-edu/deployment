@@ -1,0 +1,5 @@
+# CI values for Planka — uses vendored postgresql subchart
+postgresql:
+  enabled: true
+  auth:
+    password: "test"

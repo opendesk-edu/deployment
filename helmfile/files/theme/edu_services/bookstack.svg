@@ -1,0 +1,16 @@
+<svg width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0.5" y="0.5" width="110" height="110" rx="20" fill="white"/>
+  <g>
+    <!-- Bottom book -->
+    <rect x="25" y="55" width="58" height="16" rx="3" fill="#F59E0B"/>
+    <rect x="25" y="55" width="10" height="16" rx="2" fill="#D97706"/>
+    <!-- Middle book -->
+    <rect x="28" y="40" width="55" height="16" rx="3" fill="#D97706"/>
+    <rect x="28" y="40" width="10" height="16" rx="2" fill="#F59E0B"/>
+    <!-- Top book -->
+    <rect x="22" y="25" width="60" height="16" rx="3" fill="#F59E0B"/>
+    <rect x="22" y="25" width="10" height="16" rx="2" fill="#D97706"/>
+    <!-- Bookmark ribbon -->
+    <path d="M68 25L68 40L72 36L76 40L76 25" fill="#EF4444" opacity="0.8"/>
+  </g>
+</svg>

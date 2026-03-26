@@ -1,0 +1,19 @@
+<svg width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0.5" y="0.5" width="110" height="110" rx="20" fill="white"/>
+  <g>
+    <!-- Clipboard base -->
+    <rect x="28" y="28" width="55" height="60" rx="4" fill="#84CC16"/>
+    <!-- Clipboard clip -->
+    <rect x="44" y="23" width="22" height="10" rx="3" fill="#84CC16"/>
+    <rect x="48" y="25" width="14" height="6" rx="2" fill="white" opacity="0.6"/>
+    <!-- Checkmark rows -->
+    <rect x="37" y="42" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
+    <path d="M41 50L44 53L51 46" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="58" y="45" width="18" height="3" rx="1.5" fill="white" opacity="0.7"/>
+    <rect x="58" y="51" width="14" height="3" rx="1.5" fill="white" opacity="0.5"/>
+    <rect x="37" y="63" width="16" height="16" rx="3" fill="white" opacity="0.9"/>
+    <path d="M41 71L44 74L51 67" stroke="#84CC16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="58" y="66" width="18" height="3" rx="1.5" fill="white" opacity="0.7"/>
+    <rect x="58" y="72" width="14" height="3" rx="1.5" fill="white" opacity="0.5"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg width="111" height="111" viewBox="0 0 111 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0.5" y="0.5" width="110" height="110" rx="20" fill="white"/>
+  <g>
+    <!-- Top node -->
+    <rect x="43" y="22" width="24" height="16" rx="4" fill="#3B82F6"/>
+    <!-- Middle-left node -->
+    <circle cx="33" cy="55" r="14" fill="#60A5FA"/>
+    <!-- Middle-right node -->
+    <rect x="65" y="47" width="24" height="16" rx="4" fill="#3B82F6"/>
+    <!-- Bottom node -->
+    <circle cx="55" cy="80" r="12" fill="#60A5FA"/>
+    <!-- Connecting lines -->
+    <line x1="55" y1="38" x2="42" y2="43" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="55" y1="38" x2="68" y2="47" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="40" y1="65" x2="49" y2="72" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="70" y1="63" x2="62" y2="72" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Arrow tips -->
+    <path d="M40 65L37 60" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M70 63L73 58" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1627,6 +1627,318 @@ nubusStackDataUms:
         # which has no LDAP schema definition. The broken entry was deleted from LDAP manually.
         # Portal entry and group still work; users managed via group policies.
 
+      07-custom-etherpad-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # Etherpad Collaborative Editing Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementEtherpad"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Etherpad"
+            en_US: "Etherpad"
+          description:
+            de_DE: "Kollaborativer Texteditor"
+            en_US: "Collaborative Text Editor"
+          link:
+            - - "en_US"
+              - "https://etherpad.opendesk.example.com"
+            - - "de_DE"
+              - "https://etherpad.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementEtherpad,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementEtherpad,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      08-custom-bookstack-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # BookStack Knowledge Base Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementBookstack"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "BookStack"
+            en_US: "BookStack"
+          description:
+            de_DE: "Wissensdatenbank und Dokumentation"
+            en_US: "Knowledge Base and Documentation"
+          link:
+            - - "en_US"
+              - "https://wiki.opendesk.example.com"
+            - - "de_DE"
+              - "https://wiki.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementBookstack,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementBookstack,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      09-custom-planka-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # Planka Project Management Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementPlanka"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Planka"
+            en_US: "Planka"
+          description:
+            de_DE: "Projektmanagement (Kanban-Boards)"
+            en_US: "Project Management (Kanban Boards)"
+          link:
+            - - "en_US"
+              - "https://planka.opendesk.example.com"
+            - - "de_DE"
+              - "https://planka.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementPlanka,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementPlanka,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      10-custom-zammad-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # Zammad Service Desk Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementZammad"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Helpdesk"
+            en_US: "Helpdesk"
+          description:
+            de_DE: "IT-Support und Service Desk"
+            en_US: "IT Support and Service Desk"
+          link:
+            - - "en_US"
+              - "https://helpdesk.opendesk.example.com"
+            - - "de_DE"
+              - "https://helpdesk.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementZammad,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementZammad,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      11-custom-limesurvey-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # LimeSurvey Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementLimesurvey"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Umfragen"
+            en_US: "Surveys"
+          description:
+            de_DE: "Online-Umfragen und Kursbewertungen"
+            en_US: "Online Surveys and Course Evaluations"
+          link:
+            - - "en_US"
+              - "https://survey.opendesk.example.com"
+            - - "de_DE"
+              - "https://survey.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementLimesurvey,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementLimesurvey,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      12-custom-drawio-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # Draw.io Diagramming Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementDrawio"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Draw.io"
+            en_US: "Draw.io"
+          description:
+            de_DE: "Diagramme und Architektur-Visualisierung"
+            en_US: "Diagrams and Architecture Visualization"
+          link:
+            - - "en_US"
+              - "https://drawio.opendesk.example.com"
+            - - "de_DE"
+              - "https://drawio.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementDrawio,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementDrawio,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      13-custom-excalidraw-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # Excalidraw Whiteboarding Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementExcalidraw"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Excalidraw"
+            en_US: "Excalidraw"
+          description:
+            de_DE: "Freihand-Whiteboard und Brainstorming"
+            en_US: "Freehand Whiteboard and Brainstorming"
+          link:
+            - - "en_US"
+              - "https://excalidraw.opendesk.example.com"
+            - - "de_DE"
+              - "https://excalidraw.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementExcalidraw,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementExcalidraw,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
+      14-custom-self-service-password-portal-entry.yaml: |-
+        # SPDX-License-Identifier: AGPL-3.0-only
+        # SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+
+        # LTB Self Service Password Portal Entry
+        ---
+        action: "create"
+        module: "portals/entry"
+        position: "cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          name: "managementSSP"
+          activated: true
+          anonymous: false
+          linkTarget: "newwindow"
+          displayName:
+            de_DE: "Passwort ändern"
+            en_US: "Change Password"
+          description:
+            de_DE: "Passwort-Reset für LDAP-Konten"
+            en_US: "Password Reset for LDAP Accounts"
+          link:
+            - - "en_US"
+              - "https://ssp.opendesk.example.com"
+            - - "de_DE"
+              - "https://ssp.opendesk.example.com"
+
+        action: "modify"
+        module: "portals/entry"
+        position: "cn=managementSSP,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          linkTarget: "newwindow"
+
+        action: "ensure_list_contains"
+        module: "portals/category"
+        position: "cn=od.applications,cn=category,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+        properties:
+          entries:
+            - "cn=managementSSP,cn=entry,cn=portals,cn=univention,{{ .Values.ldap.baseDn }}"
+
 
 nubusUmcServer:
   additionalAnnotations:

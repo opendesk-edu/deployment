@@ -92,7 +92,13 @@ ics:
     origin: {{ .Values.global.hosts.nextcloud | quote }}
     subdomain: {{ .Values.global.hosts.nextcloud | quote }}
     audience: "opendesk-nextcloud"
-image:
+  {{- if .Values.apps.opencloud.enabled }}
+  opencloud:
+    origin: {{ .Values.global.hosts.opencloud | quote }}
+    subdomain: {{ .Values.global.hosts.opencloud | quote }}
+    audience: "opendesk-opencloud"
+  {{- end }}
+  image:
   pullPolicy: {{ .Values.global.imagePullPolicy | quote }}
   registry: {{ coalesce .Values.repositories.image.registryOpencodeDe .Values.global.imageRegistry .Values.images.intercom.registry | quote }}
   repository: {{ .Values.images.intercom.repository | quote }}

@@ -35,6 +35,9 @@ global:
     {{- if .Values.apps.nextcloud.enabled }}
     nextcloud: {{ .Values.global.hosts.nextcloud }}
     {{- end }}
+    {{- if .Values.apps.opencloud.enabled }}
+    opencloud: {{ .Values.global.hosts.opencloud }}
+    {{- end }}
     {{- if .Values.apps.notes.enabled }}
     notes: {{ .Values.global.hosts.notes }}
     {{- end }}

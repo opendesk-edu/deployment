@@ -1288,6 +1288,9 @@ nubusStackDataUms:
     portalManagementKnowledgeLinkBase: {{ printf "https://%s.%s" .Values.global.hosts.xwiki .Values.global.domain }}
     portalGroupwareLinkBase: {{ printf "https://%s.%s" .Values.global.hosts.openxchange .Values.global.domain }}
     portalFileshareLinkBase: {{ printf "https://%s.%s" .Values.global.hosts.nextcloud .Values.global.domain }}
+    {{- if .Values.apps.opencloud.enabled }}
+    portalFileshareOpencloudLinkBase: {{ printf "https://%s.%s" .Values.global.hosts.opencloud .Values.global.domain }}
+    {{- end }}
     portalNotesLinkBase: {{ printf "https://%s.%s" .Values.global.hosts.notes .Values.global.domain }}
     portalTitleDE: "Portal - {{ .Values.theme.texts.productName }}"
     portalTitleEN: "Portal - {{ .Values.theme.texts.productName }}"

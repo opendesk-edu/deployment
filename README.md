@@ -6,8 +6,6 @@ SPDX-License-Identifier: Apache-2.0
 
 <div align="center">
 
-![openDesk Edu](docs/assets/readme-lead-image.svg)
-
 ### TL;DR 🚀
 - 🔐 **Single Sign-On** – One login (Keycloak) for all educational services
 - 🎓 **Learning Management** – ILIAS + Moodle for university workflows
@@ -68,8 +66,8 @@ core services universities need — all integrated with openDesk's existing Keyc
 
 | Service | Component | Status | Description |
 |:--------|:----------|:------:|:------------|
-| 📖 **Learning Management** | [ILIAS](https://www.ilias.de/) ![ILIAS](docs/assets/icons/ilias-icon.svg?raw=true&width=20) | 🔄 Beta | Full-featured LMS with SAML SSO — courses, assessments, forums, SCORM |
-| 📖 **Learning Management** | [Moodle](https://moodle.org/) ![Moodle](docs/assets/icons/moodle-icon.svg?raw=true&width=20) | 🔄 Beta | Plugin-rich LMS — assignments, workshops, gradebook, Shibboleth auth |
+| 📖 **Learning Management** | [ILIAS](https://www.ilias.de/) | 🔄 Beta | Full-featured LMS with SAML SSO — courses, assessments, forums, SCORM |
+| 📖 **Learning Management** | [Moodle](https://moodle.org/) | 🔄 Beta | Plugin-rich LMS — assignments, workshops, gradebook, Shibboleth auth |
 
 ### Additional education tools 🎓
 
@@ -90,9 +88,9 @@ Configure **either** the standard openDesk CE component **or** its education-foc
 
 | Standard | Alternative | Status | Key Benefits |
 |:---------|:------------|:------:|:-------------|
-| 📧 [OX App Suite](https://www.open-xchange.com/) | [SOGo](https://www.sogo.nu/) ![SOGo](docs/assets/icons/sogo-icon.svg?raw=true&width=20) | 🔄 Beta | Email-focused, modern UI, better student experience, tight LDAP integration |
-| 📹 [Jitsi](https://jitsi.github.io/) | [BigBlueButton](https://bigbluebutton.org/) ![BBB](docs/assets/icons/bigbluebutton-icon.svg?raw=true&width=20) | 🔄 Beta | Built for teaching: recording, whiteboard, breakout rooms, session timers |
-| 📁 [Nextcloud](https://nextcloud.com/) | [OpenCloud](https://opencloud.eu/) ![OpenCloud](docs/assets/icons/opencloud-icon.svg?raw=true&width=20) | 🔄 Beta | Lightweight for education: per-course shares, CS3-based sync |
+| 📧 [OX App Suite](https://www.open-xchange.com/) | [SOGo](https://www.sogo.nu/) | 🔄 Beta | Email-focused, modern UI, better student experience, tight LDAP integration |
+| 📹 [Jitsi](https://jitsi.github.io/) | [BigBlueButton](https://bigbluebutton.org/) | 🔄 Beta | Built for teaching: recording, whiteboard, breakout rooms, session timers |
+| 📁 [Nextcloud](https://nextcloud.com/) | [OpenCloud](https://opencloud.eu/) | 🔄 Beta | Lightweight for education: per-course shares, CS3-based sync |
 
 ## ✨ How It Works
 

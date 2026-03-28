@@ -7,6 +7,27 @@ paginate: true
 ![bg](media/readme-lead-image.svg)
 
 <!-- _class: lead -->
+<!-- improved accessibility: white text for blue/dark SVG background -->
+<style>
+.lead {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3);
+}
+.lead h1 {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3);
+}
+.lead h2, .lead h3 {
+  color: #f0f0f0 !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+.lead p {
+  color: #ffffff !important;
+}
+.lead strong {
+  color: #ffffff !important;
+}
+</style>
 
 # 🏛️ openDesk: Komfortabel und Souverän?
 

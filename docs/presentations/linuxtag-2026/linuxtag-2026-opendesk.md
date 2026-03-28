@@ -382,6 +382,8 @@ helmfile rollback -e hrz
 
 ---
 
+<div style="font-size: 0.85em;">
+
 # Technische Ressourcen
 
 - **openDesk:** [docs.opendesk.eu](https://docs.opendesk.eu) — Offizielle Dokumentation des Projekts
@@ -402,6 +404,8 @@ helmfile rollback -e hrz
 # 📚 Lesenswert — Recht & Governance
 
 ---
+
+<div style="font-size: 0.85em;">
 
 # Organisatorische Ressourcen
 

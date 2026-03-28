@@ -283,17 +283,6 @@ helmfile rollback -e hrz
 
 ---
 
-# HRZ-Upgrade: Dual Backup
-
-- **Ziele:** Redundante Backup-Speicher 🗄️
-- **Strategie:** S3-kompatibel mit restic-Backend 🔄
-  - Primary: `s3.example.org:9000/backup-primary`
-  - Secondary: `s3-backup.example.org:9000/backup-secondary`
-- **Schedule:** Täglich 00:42, Check wöchentlich, Prune sonntags ⏰
-- **Retention:** 14 Daily, Keep Last 5 📦
-
----
-
 # Institutionelle Hürden
 
 - **Rechtsabteilung** ⚖️
@@ -330,6 +319,12 @@ helmfile rollback -e hrz
 
 ---
 
+<!-- _class: lead -->
+
+# 🔧 Technische Vertiefung
+
+---
+
 # Technische Ressourcen
 
 - **openDesk:** [docs.opendesk.eu](https://docs.opendesk.eu) — Offizielle Dokumentation des Projekts
@@ -342,6 +337,12 @@ helmfile rollback -e hrz
 - **Cluster-Automation:**
   - [Kubespray](https://github.com/kubernetes-sigs/kubespray) — Ansible-basierte K8s-Installation
   - [k3s-ansible](https://github.com/timothystewart6/k3s-ansible) — Alternative Automatisierung für K3s
+
+---
+
+<!-- _class: lead -->
+
+# 📚 Lesenswert — Recht & Governance
 
 ---
 

@@ -69,3 +69,12 @@ tests:
           content:
             name: etherpad-data
             mountPath: /opt/etherpad/var
+
+  - it: should set container security context
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.runAsUser
+          value: 0
+      - equal:
+          path: spec.template.spec.containers[0].securityContext.runAsGroup
+          value: 0

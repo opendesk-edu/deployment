@@ -108,9 +108,7 @@ jobs:
 
       - name: Install kubeconform
         run: |
-          wget -q -O /usr/local/bin/kubeconform \
-            https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64
-          chmod +x /usr/local/bin/kubeconform
+          wget -qO- https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xz -C /usr/local/bin kubeconform
 
       - name: Validate with kubeconform
         run: kubeconform -summary -ignore-missing-schemas /tmp/rendered.yaml
@@ -178,5 +176,4 @@ jobs:
             helmfile/apps/excalidraw/ \
             helmfile/apps/self-service-password/ \
             helmfile/apps/sogo/ \
-            docs/external-services/ilias-deployment-guide.md \
-            --exclude-paths "helmfile/charts/*/charts/*"
+            docs/external-services/ilias-deployment-guide.md

@@ -32,7 +32,7 @@
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 60px 40px 0 40px;
             text-align: center;
         }
 
@@ -46,6 +46,16 @@
             font-size: 1.3em;
             font-weight: 400;
             opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 30px auto 0;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .content {
@@ -209,6 +219,29 @@
             margin-right: 10px;
             margin-bottom: 10px;
         }
+
+        .gif-showcase {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .gif-showcase .gif {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gif-showcase figcaption {
+            margin-top: 15px;
+            color: #666;
+            font-style: italic;
+            font-size: 0.95em;
+        }
     </style>
 </head>
 <body>
@@ -216,6 +249,7 @@
         <header>
             <h1>🎓 openDesk Edu - Presentations</h1>
             <h2>LinuxTag 2026 · Chemnitz · 28.03.2026</h2>
+            <img src="presentations-media/opendesk-edu-readme.svg" alt="openDesk Edu Illustration" class="hero-image">
         </header>
 
         <div class="content">
@@ -414,6 +448,11 @@
                     <span class="tag">☁️ Cloud-Native</span>
                     <span class="tag">🔒 BSI-Certified</span>
                     <span class="tag">🇩🇪 Open Source</span>
+                </div>
+
+                <div class="gif-showcase">
+                    <img src="presentations-media/opendesk-edu-ilias-integration.gif" alt="ILIAS Integration Demo" class="gif">
+                    <figcaption>ILIAS Integration Demo — Seamless SAML SSO with Keycloak</figcaption>
                 </div>
 
                 <div class="project-description">

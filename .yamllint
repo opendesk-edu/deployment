@@ -12,3 +12,4 @@ rules:
 
 ignore: |
   helmfile/charts/*/charts/
+  helmfile/charts/*/templates/

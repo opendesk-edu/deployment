@@ -3,6 +3,7 @@
     "ignorePaths": [
         ".github/ISSUE_TEMPLATE/",
         ".github/SECURITY.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
         "CONTRIBUTING.md"
     ],
     "dictionaryDefinitions": [],

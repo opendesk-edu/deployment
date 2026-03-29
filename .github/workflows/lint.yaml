@@ -164,20 +164,20 @@ jobs:
 
       - name: Scan for secrets
         run: |
-          trufflehog filesystem . \
-            --include "helmfile/apps/ilias/" \
-            --include "helmfile/apps/moodle/" \
-            --include "helmfile/apps/bigbluebutton/" \
-            --include "helmfile/apps/opencloud/" \
-            --include "helmfile/apps/etherpad/" \
-            --include "helmfile/apps/bookstack/" \
-            --include "helmfile/apps/planka/" \
-            --include "helmfile/apps/zammad/" \
-            --include "helmfile/apps/limesurvey/" \
-            --include "helmfile/apps/drawio/" \
-            --include "helmfile/apps/excalidraw/" \
-            --include "helmfile/apps/self-service-password/" \
-            --include "helmfile/apps/sogo/" \
-            --include "docs/external-services/ilias-deployment-guide.md" \
+          trufflehog filesystem \
+            helmfile/apps/ilias/ \
+            helmfile/apps/moodle/ \
+            helmfile/apps/bigbluebutton/ \
+            helmfile/apps/opencloud/ \
+            helmfile/apps/etherpad/ \
+            helmfile/apps/bookstack/ \
+            helmfile/apps/planka/ \
+            helmfile/apps/zammad/ \
+            helmfile/apps/limesurvey/ \
+            helmfile/apps/drawio/ \
+            helmfile/apps/excalidraw/ \
+            helmfile/apps/self-service-password/ \
+            helmfile/apps/sogo/ \
+            docs/external-services/ilias-deployment-guide.md \
             --filter "opendesk.example.com|example.com|s3.example.com|admin@example.com|admin@opendesk.example.com|localhost|127.0.0.1|your-org|ghcr.io" \
             --exclude-paths "helmfile/charts/*/charts/*"

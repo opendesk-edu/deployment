@@ -869,7 +869,7 @@ When eduGAIN is enabled:
 - [ ] Implement eduGAIN attribute mappers
 - [ ] Implement role assignment script mapper
 - [ ] Create federation discovery integration
-- [ ] Write documentation (bilingual)
+- [x] Write documentation (bilingual)
 - [ ] Write tests (unit + integration)
 - [ ] Test with DFN-AAI test federation
 - [ ] Pass Final Verification Wave

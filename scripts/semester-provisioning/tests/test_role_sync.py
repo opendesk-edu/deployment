@@ -1,6 +1,5 @@
 import importlib.util
 import pathlib
-from typing import List
 
 
 def load_role_sync_module():
@@ -31,7 +30,7 @@ def test_basic_role_sync_maps_student(monkeypatch):
     # to resolve forward references and type annotations
     KCUser.model_rebuild()
     LMSUser.model_rebuild()
-    kc_users: List[role_sync.KCUser] = [KCUser(id="u1", realm_roles=["student"])]
+    kc_users = [KCUser(id="u1", realm_roles=["student"])]
 
     results = engine.sync(kc_users)
 

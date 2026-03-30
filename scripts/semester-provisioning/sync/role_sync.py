@@ -10,7 +10,7 @@ Engine to sync user roles between Keycloak and LMS platforms.
 
 from __future__ import annotations
 
-from typing import List, Dict, Optional
+from typing import Dict, Optional
 from pydantic import BaseModel
 
 
@@ -22,7 +22,7 @@ class KCUser(BaseModel):
     """
 
     id: str
-    realm_roles: List[str]
+    realm_roles: list[str]
 
 
 class LMSUser(BaseModel):
@@ -33,7 +33,7 @@ class LMSUser(BaseModel):
     """
 
     id: str
-    roles: List[str]
+    roles: list[str]
 
 
 class RoleSyncEngine:
@@ -57,32 +57,32 @@ class RoleSyncEngine:
             "lecturer": "instructor",
         }
 
-    def _map_roles(self, kc_roles: List[str]) -> List[str]:
+    def _map_roles(self, kc_roles: list[str]) -> list[str]:
         """Map Keycloak roles to LMS roles according to self.role_map, deduplicated and ordered.
 
         EN: Returns the mapped roles with duplicates removed while preserving order.
         ES: Devuelve los roles mapeados quitando duplicados y preservando el orden.
         """
-        mapped: List[str] = []
+        mapped: list[str] = []
         for r in kc_roles:
             if r in self.role_map:
                 mapped.append(self.role_map[r])
         # Deduplicate while preserving order
         seen = set()
-        result: List[str] = []
+        result: list[str] = []
         for r in mapped:
             if r not in seen:
                 seen.add(r)
                 result.append(r)
         return result
 
-    def sync(self, users: List[KCUser]) -> List[LMSUser]:
+    def sync(self, users: list[KCUser]) -> list[LMSUser]:
         """Synchronize a list of Keycloak users to LMS, returning LMSUser records.
 
         EN: For each KCUser, compute mapped LMS roles and push to LMS via lms_client.
         ES: Para cada KCUser, calcular los roles LMS mapeados y enviarlos al LMS mediante lms_client.
         """
-        results: List[LMSUser] = []
+        results: list[LMSUser] = []
         for u in users:
             mapped = self._map_roles(u.realm_roles)
             if self.lms_client:

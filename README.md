@@ -201,6 +201,15 @@ drop-in alternatives, not replacements. This is a **superset** of openDesk CE, n
 
 Found a bug or have a feature request? Please [open an issue](https://github.com/tobias-weiss-ai-xr/opendesk-edu/issues).
 
+## 🔗 Repository Mirroring
+
+This repository is automatically synchronized between GitHub and Codeberg:
+
+- **GitHub:** https://github.com/tobias-weiss-ai-xr/opendesk-edu
+- **Codeberg:** https://codeberg.org/opendesk-edu/opendesk-edu
+
+Both repositories are kept in sync via automated CI/CD workflows. Pushes to either platform sync to the other within 1-2 minutes. See [sync documentation](./docs/maintenance/github-codeberg-sync.md) for details.
+
 ## 🤝 Contributing
 
 Contributions are welcome! See the [Development guide](./docs/developer/development.md) for how to get started.

@@ -12,12 +12,12 @@ on:
 jobs:
   github-sync:
     name: Sync to GitHub mirror
-    runs-on: ubuntu-latest
+    runs-on: codeberg-small
     timeout-minutes: 10
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: https://github.com/actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for mirror
 
@@ -80,3 +80,5 @@ jobs:
         run: |
           echo "❌ Codeberg → GitHub sync failed"
           echo "Check the above logs for details"
+
+# trigger: 1774928092

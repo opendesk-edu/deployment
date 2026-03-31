@@ -59,6 +59,9 @@ global:
     {{- if .Values.apps.xwiki.enabled }}
     xwiki: {{ .Values.global.hosts.xwiki }}
     {{- end }}
+    {{- if .Values.apps.typo3.enabled }}
+    typo3: {{ .Values.global.hosts.typo3 }}
+    {{- end }}
 
 issuerRef:
   name: {{ .Values.certificate.issuerRef.name | quote }}

@@ -147,6 +147,7 @@ drop-in alternatives, not replacements. This is a **superset** of openDesk CE, n
 | 🔑 **Password Reset** | **LTB SSP** | GPL-3.0 | [1.7](https://github.com/ltb-project/self-service-password/releases) | [Docs](https://self-service-password.readthedocs.io/) |
 | 📐 **Diagrams** | **Draw.io** | Apache-2.0 | [29.6](https://github.com/jgraph/drawio/releases) | [Docs](https://www.drawio.com/doc/) |
 | ✏️ **Whiteboard** | **Excalidraw** | MIT | [latest](https://github.com/excalidraw/excalidraw/releases) | [Docs](https://docs.excalidraw.com/) |
+| 📰 **CMS** | **[TYPO3](https://typo3.org/)** | Apache-2.0 | [13.4](https://get.typo3.org/) | [Docs](https://docs.typo3.org/) |
 
 ---
 

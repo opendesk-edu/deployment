@@ -228,6 +228,13 @@ Configuration follows the same pattern as the upstream services above.
 |                  |         | Port                             | `databases.sogo.port`                         | `5432`         |
 |                  |         | Username                         | `databases.sogo.username`                     | `sogo_user`    |
 |                  |         | Password                         | `databases.sogo.password`                     |                |
+| TYPO3 CMS        | TYPO3   |                                  |                                               |                |
+|                  |         | Type                             | `databases.typo3.type`                        | `mariadb`      |
+|                  |         | Name                             | `databases.typo3.name`                        | `typo3`        |
+|                  |         | Host                             | `databases.typo3.host`                        | `mariadb`      |
+|                  |         | Port                             | `databases.typo3.port`                        | `3306`         |
+|                  |         | Username                         | `databases.typo3.username`                    | `typo3_user`   |
+|                  |         | Password                         | `databases.typo3.password`                    |                |
 
 > [!note]
 > Draw.io, Excalidraw, and Self-Service Password are stateless applications and do not require a database.

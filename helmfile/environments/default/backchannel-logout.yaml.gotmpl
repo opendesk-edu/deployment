@@ -208,6 +208,32 @@ backchannelLogout:
       ##
       verbose: {{ env "BACKCHANNEL_LOGOUT_NEXTCLOUD_VERBOSE" | default "false" | quote }}
 
+    ## Backchannel logout for TYPO3
+    ##
+    ## TYPO3 uses OIDC for authentication.
+    ## Implements OpenID Connect Back-Channel Logout spec (draft-06)
+    ##
+    typo3:
+      ## Enable OIDC backchannel logout for TYPO3
+      ##
+      enabled: {{ env "BACKCHANNEL_LOGOUT_TYPO3_ENABLED" | default "true" | quote }}
+
+      ## Backchannel logout listener endpoint
+      ##
+      backchannelLogoutUrl: {{ env "BACKCHANNEL_LOGOUT_TYPO3_URL" | default (printf "https://cms.%s/typo3/backchannel_logout" .Values.global.domain) | quote }}
+
+      ## Require PKCE during logout
+      ##
+      requirePkce: {{ env "BACKCHANNEL_LOGOUT_TYPO3_REQUIRE_PKCE" | default "true" | quote }}
+
+      ## Maximum logout token age
+      ##
+      maxTokenAge: {{ env "BACKCHANNEL_LOGOUT_TYPO3_MAX_TOKEN_AGE" | default "300" | quote }}
+
+      ## Verbose logging
+      ##
+      verbose: {{ env "BACKCHANNEL_LOGOUT_TYPO3_VERBOSE" | default "false" | quote }}
+
   ## Global backchannel logout settings
   ##
   global:

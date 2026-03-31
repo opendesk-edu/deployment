@@ -123,4 +123,21 @@ apps:
   typo3:
     enabled: true
     namespace: ~
+  # Lecture Recording (v1.2)
+  snipr:
+    enabled: true
+    namespace: ~
+    transcription:
+      enabled: true
+    lti:
+      enabled: true
+      clientId: "snipr-lti"
+      ilias:
+        deploymentId: "ilias-snipr"
+        launchUrl: "https://ilias.opendesk.example.com/snipr/lti/launch"
+      moodle:
+        deploymentId: "moodle-snipr"
+        launchUrl: "https://moodle.opendesk.example.com/mod/lti/launch"
+    sso:
+      clientId: "snipr"
   ...

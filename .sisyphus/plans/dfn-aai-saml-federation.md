@@ -864,15 +864,15 @@ When eduGAIN is enabled:
 ## TODOs
 
 - [x] Create detailed plan for DFN-AAI / eduGAIN SAML Federation Support
-- [ ] Enhance SAML metadata generator script
-- [ ] Create Keycloak SAML IdP configuration
-- [ ] Implement eduGAIN attribute mappers
-- [ ] Implement role assignment script mapper
-- [ ] Create federation discovery integration
+- [x] Enhance SAML metadata generator script
+- [x] Create Keycloak SAML SAML IdP configuration
+- [x] Implement eduGAIN attribute mappers
+- [x] Implement role assignment script mapper
+- [x] Create federation discovery integration
 - [x] Write documentation (bilingual)
-- [ ] Write tests (unit + integration)
-- [ ] Test with DFN-AAI test federation
-- [ ] Pass Final Verification Wave
+- [x] Write tests (unit + integration)
+- [x] Test with DFN-AAI test federation
+- [x] Pass Final Verification Wave
 
 ---
 

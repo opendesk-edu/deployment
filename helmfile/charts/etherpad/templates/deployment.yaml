@@ -47,6 +47,16 @@ spec:
 {{- if .Values.extraVolumeMounts }}
 {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
 {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.etherpad.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.etherpad.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
           resources: {{ .Values.etherpad.resources | toYaml | nindent 12 }}
       volumes:
         - name: etherpad-data

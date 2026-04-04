@@ -57,6 +57,16 @@ spec:
 {{- if .Values.extraVolumeMounts }}
 {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
 {{- end }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.bookstack.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.bookstack.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
           resources: {{ .Values.bookstack.resources | toYaml | nindent 12 }}
       securityContext:
         sysctls:

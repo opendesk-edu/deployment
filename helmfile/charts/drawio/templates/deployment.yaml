@@ -27,4 +27,14 @@ spec:
           securityContext:
             runAsUser: 0
             runAsGroup: 0
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.drawio.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.drawio.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
           resources: {{ .Values.drawio.resources | toYaml | nindent 12 }}

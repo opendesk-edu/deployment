@@ -27,4 +27,14 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsNonRoot: true
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.excalidraw.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.excalidraw.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
           resources: {{ .Values.excalidraw.resources | toYaml | nindent 12 }}

@@ -20,6 +20,7 @@ one-command Kubernetes deploy with unified Keycloak SSO
 [![Kubernetes](https://img.shields.io/badge/Platform-Kubernetes-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io)
 [![Helm](https://img.shields.io/badge/Deploy-Helm-0F1689?logo=helm&logoColor=white)](https://helm.sh)
 [![Upstream](https://img.shields.io/badge/Upstream-openDesk_CE_v1.13.x-green)](https://www.opencode.de/en/opendesk)
+[![Test](https://github.com/tobias-weiss-ai-xr/opendesk-edu/actions/workflows/test.yml/badge.svg)](https://github.com/tobias-weiss-ai-xr/opendesk-edu/actions/workflows/test.yml)
 
 <br/>
 

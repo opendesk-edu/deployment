@@ -23,4 +23,4 @@ jobs:
           cd opendesk-edu
           git config user.name "Mirror Bot"
           git config user.email "mirror@opendesk-edu.org"
-          git push --mirror https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/opendesk-edu/opendesk-edu-deployment.git
+          git push --mirror https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/opendesk-edu/opendesk-edu.git

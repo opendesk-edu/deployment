@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  workflows: write
 
 jobs:
   mirror:
@@ -24,7 +23,7 @@ jobs:
 
       - name: Push to GitHub
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.MIRROR_PAT || secrets.GITHUB_TOKEN }}
         run: |
           cd opendesk-edu
           git config user.name "Mirror Bot"

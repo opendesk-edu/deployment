@@ -146,7 +146,7 @@ class HISinOneClient:
         """
         if not self._is_configured():
             logger.info("HISinOne API not configured, returning mock data")
-            return self._get_mock_data(method)
+            return self._get_mock_data(method, params)
 
         if not self._client:
             raise HISinOneClientError(
@@ -321,17 +321,21 @@ class HISinOneClient:
         """
         return await self._soap_call("getSemester", {})
 
-    def _get_mock_data(self, endpoint: str) -> Any:
+    def _get_mock_data(
+        self, endpoint: str, params: dict[str, Any] | None = None
+    ) -> Any:
         """Return mock data for development/testing.
 
         Args:
             endpoint: API endpoint or method name
+            params: Method parameters
 
         Returns:
             Mock response data
         """
         # Normalize endpoint name for matching
         endpoint_lower = endpoint.lower()
+        params = params or {}
 
         if "semester" in endpoint_lower:
             return [
@@ -375,7 +379,10 @@ class HISinOneClient:
             ]
 
         elif "teilnehmer" in endpoint_lower:
-            # Enrollments
+            # Enrollments - return empty for non-existent courses
+            course_id = params.get("veranstaltung_id")
+            if course_id and course_id not in ["LV-001", "LV-002"]:
+                return []
             return [
                 {
                     "enrollment_id": "ENR-001",
@@ -405,6 +412,56 @@ class HISinOneClient:
                 "semester": 1,
                 "faculty": "Technische Fakultät",
             }
+
+        elif "stundenplan" in endpoint_lower:
+            # Schedule events
+            return [
+                {
+                    "uid": "evt-001",
+                    "title": "Einführung in die Informatik",
+                    "start": "20261015T090000Z",
+                    "end": "20261015T110000Z",
+                    "room": "H1.1",
+                    "recurrence": "FREQ=WEEKLY;BYDAY=MO,FR",
+                    "course_id": "LV-001",
+                },
+                {
+                    "uid": "evt-002",
+                    "title": "Mathematik I",
+                    "start": "20261015T120000Z",
+                    "end": "20261015T140000Z",
+                    "room": "H2.3",
+                    "recurrence": "FREQ=WEEKLY;BYDAY=TU,TH",
+                    "course_id": "LV-002",
+                },
+                {
+                    "uid": "evt-003",
+                    "title": "Programmierung I",
+                    "start": "20261016T100000Z",
+                    "end": "20261016T120000Z",
+                    "room": "Lab-1",
+                    "recurrence": "FREQ=WEEKLY;BYDAY=WE",
+                    "course_id": "LV-001",
+                },
+                {
+                    "uid": "evt-004",
+                    "title": "Algorithmen und Datenstrukturen",
+                    "start": "20261017T080000Z",
+                    "end": "20261017T100000Z",
+                    "room": "H1.2",
+                    "recurrence": "FREQ=WEEKLY;BYDAY=TH",
+                    "course_id": "LV-001",
+                },
+                {
+                    "uid": "evt-005",
+                    "title": "Lineare Algebra",
+                    "start": "20261018T140000Z",
+                    "end": "20261018T160000Z",
+                    "room": "H3.1",
+                    "recurrence": "FREQ=WEEKLY;BYDAY=FR",
+                    "course_id": "LV-002",
+                },
+            ]
 
         # Default empty response
         return []

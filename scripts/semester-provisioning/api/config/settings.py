@@ -46,6 +46,11 @@ class Settings(BaseSettings):
     marvin_webhook_secret: Optional[str] = None
     marvin_webhook_port: int = 8002
 
+    caldav_url: str = ""
+    caldav_username: str = ""
+    caldav_password: str = ""
+    caldav_verify_ssl: bool = True
+
 
 @lru_cache
 def get_settings() -> Settings:

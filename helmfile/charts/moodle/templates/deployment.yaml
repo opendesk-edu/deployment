@@ -55,6 +55,16 @@ spec:
               value: "/usr/share/xml/shibboleth/catalog.xml:/usr/share/xml/xmltooling/catalog.xml:/usr/share/xml/opensaml/saml20-catalog.xml:/usr/share/xml/opensaml/saml11-catalog.xml"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          livenessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
           volumeMounts:
             - name: moodle-data
               mountPath: /bitnami/moodle

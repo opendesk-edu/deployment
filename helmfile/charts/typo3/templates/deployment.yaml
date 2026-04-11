@@ -73,6 +73,16 @@ spec:
 {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
 {{- end }}
           resources: {{ .Values.typo3.resources | toYaml | nindent 12 }}
+          livenessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
       securityContext:
         sysctls:
           - name: net.ipv4.ip_unprivileged_port_start

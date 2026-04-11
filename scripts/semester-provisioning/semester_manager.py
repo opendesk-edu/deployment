@@ -415,17 +415,60 @@ class SemesterManager:
             Liste der archivierten Kurs-IDs.
         """
         archived_ids = []
+        failed_ids = []
 
-        # This would integrate with the course_api to list and archive courses
-        # Placeholder implementation
-        if self._course_api is not None:
-            # In production, this would call the course API
-            # For now, return empty list
-            logger.debug(
-                f"Course API available but _archive_semester_courses is a placeholder"
-                f" / Kurs-API verfügbar, aber _archive_semester_courses ist ein Platzhalter"
-            )
-            pass
+        if self._database is None:
+            logger.debug("No database connection, skipping archival")
+            return archived_ids
+
+        # Query all active courses for this semester
+        courses, total = self._database.list_courses(
+            semester_id=self._config.semester_id,
+            status="active",
+        )
+
+        logger.info(
+            f"Archiving {total} active courses for semester "
+            f"'{semester_name}' / Archiviere {total} aktive Kurse "
+            f"für Semester '{semester_name}'"
+        )
+
+        for course in courses:
+            course_id = course.get("course_id", "")
+            course_title = course.get("title", course_id)
+            try:
+                result = self._database.archive_course(course_id)
+                if result is not None:
+                    archived_ids.append(course_id)
+                    self._audit_logger.log(
+                        AuditAction.COURSE_ARCHIVED,
+                        entity_type="course",
+                        entity_id=course_id,
+                        details={"title": course_title, "semester": semester_name},
+                    )
+                    logger.debug(
+                        f"Archived course '{course_title}' ({course_id}) / "
+                        f"Kurs '{course_title}' ({course_id}) archiviert"
+                    )
+                else:
+                    logger.warning(
+                        f"Course '{course_id}' could not be archived "
+                        f"(not in active status) / Kurs '{course_id}' konnte "
+                        f"nicht archiviert (nicht aktiv)"
+                    )
+                    failed_ids.append(course_id)
+            except Exception as e:
+                logger.error(
+                    f"Failed to archive course '{course_id}': {e} / "
+                    f"Fehler beim Archivieren des Kurses '{course_id}': {e}"
+                )
+                failed_ids.append(course_id)
+
+        logger.info(
+            f"Archive complete: {len(archived_ids)} archived, "
+            f"{len(failed_ids)} failed / Archivierung abgeschlossen: "
+            f"{len(archived_ids)} archiviert, {len(failed_ids)} fehlgeschlagen"
+        )
 
         return archived_ids
 

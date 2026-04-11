@@ -52,6 +52,16 @@ spec:
 {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
 {{- end }}
           resources: {{ .Values.zammad.resources | toYaml | nindent 12 }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ .Values.zammad.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.zammad.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
       securityContext:
         fsGroup: 1000
       volumes:

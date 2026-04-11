@@ -463,5 +463,45 @@ class HISinOneClient:
                 },
             ]
 
+        elif "raumbuchung" in endpoint_lower:
+            # Room assignments
+            return [
+                {
+                    "raum": "H1.1",
+                    "veranstaltung_id": "LV-001",
+                    "beginn": "20261015T090000Z",
+                    "ende": "20261015T110000Z",
+                    "kapazitaet": 150,
+                },
+                {
+                    "raum": "H2.3",
+                    "veranstaltung_id": "LV-002",
+                    "beginn": "20261015T120000Z",
+                    "ende": "20261015T140000Z",
+                    "kapazitaet": 80,
+                },
+                {
+                    "raum": "Lab-1",
+                    "veranstaltung_id": "LV-001",
+                    "beginn": "20261016T100000Z",
+                    "ende": "20261016T120000Z",
+                    "kapazitaet": 30,
+                },
+                {
+                    "raum": "H1.2",
+                    "veranstaltung_id": "LV-001",
+                    "beginn": "20261017T080000Z",
+                    "ende": "20261017T100000Z",
+                    "kapazitaet": 100,
+                },
+                {
+                    "raum": "H3.1",
+                    "veranstaltung_id": "LV-002",
+                    "beginn": "20261018T140000Z",
+                    "ende": "20261018T160000Z",
+                    "kapazitaet": 100,
+                },
+            ]
+
         # Default empty response
         return []

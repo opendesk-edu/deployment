@@ -51,6 +51,9 @@ class Settings(BaseSettings):
     caldav_password: str = ""
     caldav_verify_ssl: bool = True
 
+    bbb_url: str = ""
+    bbb_secret: str = ""
+
 
 @lru_cache
 def get_settings() -> Settings:

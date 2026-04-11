@@ -16,15 +16,15 @@ ilias:
 
     # SAML SP (Service Provider) configuration
     sp:
-      entityId: "{{ printf "https://lms.%s/shibboleth" .Values.global.domain | quote }}"
+      entityId: "https://lms.{{ .Values.global.domain }}/shibboleth"
       assertionConsumerService: "https://lms.{{ .Values.global.domain }}/Shibboleth.sso/SAML2/POST"
       singleLogoutService: "https://lms.{{ .Values.global.domain }}/Shibboleth.sso/Logout"
 
     # SAML IdP (Identity Provider) configuration
     idp:
-      entityId: "{{ printf "https://id.%s/realms/%s" .Values.global.domain .Values.platform.realm | quote }}"
-      singleSignOnService: "{{ printf "https://id.%s/realms/%s" .Values.global.domain .Values.platform.realm | quote }}/protocol/saml"
-      singleLogoutService: "{{ printf "https://id.%s/realms/%s" .Values.global.domain .Values.platform.realm | quote }}/protocol/saml"
+      entityId: "https://id.{{ .Values.global.domain }}/realms/{{ .Values.platform.realm }}"
+      singleSignOnService: "https://id.{{ .Values.global.domain }}/realms/{{ .Values.platform.realm }}/protocol/saml"
+      singleLogoutService: "https://id.{{ .Values.global.domain }}/realms/{{ .Values.platform.realm }}/protocol/saml"
 
   # Apache Shibboleth integration
   shibboleth:

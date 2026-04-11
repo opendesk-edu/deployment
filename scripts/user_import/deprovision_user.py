@@ -155,9 +155,9 @@ class UserDeprovisioner:
 
         logger.info(f"Stored deprovisioning metadata for {user['username']}")
 
-def _archive_user_data(self, user: Dict):
+    def _archive_user_data(self, user: Dict):
         """Archive user data from all services before deletion"""
-        username = user['username']
+        username = user["username"]
 
         try:
             # Use service archiver to archive from all services
@@ -189,11 +189,11 @@ def _archive_user_data(self, user: Dict):
 
     def _fallback_archive(self, user: Dict):
         """Fallback to simple Keycloak-only archive if service archiver fails"""
-        username = user['username']
+        username = user["username"]
 
         try:
             # Create archive directory
-            archive_dir = '/var/lib/opendesk-archives'
+            archive_dir = "/var/lib/opendesk-archives"
             os.makedirs(archive_dir, exist_ok=True)
 
             # Create user-specific archive
@@ -202,8 +202,9 @@ def _archive_user_data(self, user: Dict):
 
             # Export user data
             import json
-            user_data_file = os.path.join(user_archive_dir, 'user-data.json')
-            with open(user_data_file, 'w') as f:
+
+            user_data_file = os.path.join(user_archive_dir, "user-data.json")
+            with open(user_data_file, "w") as f:
                 json.dump(user, f, indent=2)
 
             logger.info(f"Archived Keycloak user data for {username} to {user_archive_dir}")

@@ -95,25 +95,20 @@ python sync_users.py --source ldap --dry-run
 
 ### HISinOne Event-Based Provisioning
 
-```bash
-# Listen for HISinOne events and provision users
-python hisinone_listener.py
-
-# Process a specific event
-python hisinone_listener.py --event immatrikulation --student-id 123456
-```
+HISinOne integration is handled via the semester provisioning API. See `docs/semester-lifecycle-management.md` for details on semester-based course and enrollment management.
 
 ### Manual User Creation
 
 ```bash
-# Create a single user
-python create_user.py \
-  --username john.doe \
-  --email john.doe@institution.de \
-  --first-name "John" \
-  --last-name "Doe" \
-  --affiliation student \
-  --roles "student"
+# Create users from CSV/ODS input
+python provision.py \
+  --input-file users.csv \
+  --dry-run
+
+# Import users from LDAP/UCS
+python provision.py \
+  --source ucs \
+  --csv-separator ','
 ```
 
 ## Role Assignment
@@ -167,19 +162,13 @@ Define role mappings in `config/roles.json`:
 
 ### Assign Roles
 
+Roles are assigned automatically based on LDAP attributes and configured in `config/roles.json`. See the Role Mapping Configuration section above for details on how roles are mapped to group memberships and service access.
+
+For custom role assignments, modify the role mapping in `config/roles.json` and re-run the sync:
+
 ```bash
-# Assign role based on LDAP affiliation
-python sync_users.py --source ldap --auto-assign-roles
-
-# Manually assign specific roles
-python assign_roles.py \
-  --username john.doe \
-  --roles "student,ilias_user"
-
-# Assign faculty-specific roles
-python assign_roles.py \
-  --username jane.smith \
-  --roles "faculty,lecturer,ilias_instructor"
+# Sync users with updated role mappings
+python sync_users.py --source ldap --auto-sync
 ```
 
 ## User Deprovisioning
@@ -231,19 +220,14 @@ python deprovision_user.py \
 
 ## SAML Account Linking
 
-When using SAML federation (DFN-AAI), link SAML identities to existing Keycloak users:
+When using SAML federation (DFN-AAI), SAML identity linking is handled automatically by the Keycloak admin API integration in `lib/keycloak.py`. The `deprovision_disable.py` script includes SAML identity removal when disabling users.
+
+For manual SAML identity management, use the Keycloak admin API directly:
 
 ```bash
-# Link SAML identity to existing user
-python link_saml.py \
-  --username john.doe \
-  --saml-idp "DFN-AAI" \
-  --saml-name-id "john.doe@institution.de"
-
-# Bulk link SAML identities for all users
-python link_saml.py \
-  --source ldap \
-  --saml-idp "DFN-AAI"
+# Use Keycloak admin CLI
+kcadm.sh get users -r opendesk
+kcadm.sh get users/<user-id>/federated-identity/<identity-provider> -r opendesk
 ```
 
 ## Scheduling Automated Sync
@@ -303,49 +287,53 @@ crontab -e
 
 ### Log Files
 
-- `/var/log/opendesk-user-sync.log` - Main sync log
-- `/var/log/opendesk-user-provisioning.log` - Provisioning events
-- `/var/log/opendesk-user-deprovisioning.log` - Deprovisioning events
+- `/var/log/opendesk-user-sync.log` - Main sync log (from sync_users.py)
+- `/var/log/opendesk-user-provisioning.log` - Provisioning events (from provision.py)
+- `/var/log/opendesk-user-deprovisioning.log` - Deprovisioning events (from deprovision_user.py)
 
-### Monitoring Dashboard
+Monitor logs directly using standard tools:
 
 ```bash
 # View recent sync activity
-python monitor_sync.py --last-hours 24
+tail -f /var/log/opendesk-user-sync.log
 
 # Check failed syncs
-python monitor_sync.py --failed-only
+grep ERROR /var/log/opendesk-user-sync.log
 
 # Sync statistics
-python monitor_sync.py --stats
+grep "Synced" /var/log/opendesk-user-sync.log | wc -l
 ```
 
 ## Troubleshooting
 
 ### LDAP Connection Issues
 
+Test LDAP connectivity using standard tools:
+
 ```bash
 # Test LDAP connectivity
-python test_ldap.py
+ldapsearch -H ldap://ldap.yourinstitution.de -x -D "cn=admin,dc=institution,dc=de" -W -b "dc=institution,dc=de"
 
-# Check LDAP bind
-python test_ldap.py --bind
+# Check if sync can connect
+python sync_users.py --source ldap --dry-run
 
-# Test user search
-python test_ldap.py --search "(uid=john.doe)"
+# Check for connection errors
+grep "LDAP connection failed" /var/log/opendesk-user-sync.log
 ```
 
 ### Keycloak Admin API Issues
 
+Test Keycloak connection using the admin CLI:
+
 ```bash
 # Test Keycloak connection
-python test_keycloak.py
+kcadm.sh config credentials --server https://yourdomain.de/auth --realm master --user admin
 
 # Check admin credentials
-python test_keycloak.py --list-users
+kcadm.sh get users -r opendesk --max 1
 
-# Test role assignment
-python test_keycloak.py --test-role-assignment
+# Test if provision.py can connect
+python provision.py --dry-run --help
 ```
 
 ### Sync Failures
@@ -357,8 +345,8 @@ python sync_users.py --source ldap --debug
 # Check for errors in logs
 tail -f /var/log/opendesk-user-sync.log
 
-# Validate user data before sync
-python validate_users.py --input-file users.csv
+# Validate CSV input format before running provision.py
+head -n 5 users.csv
 ```
 
 ## Security Considerations
@@ -395,15 +383,17 @@ python validate_users.py --input-file users.csv
 
 ### Backup & Restore
 
+User data is stored in Keycloak and UCS. Use their native backup/restore tools:
+
 ```bash
-# Export Keycloak users
-python export_users.py --output-keycloak-users.json
+# Export Keycloak realm configuration (includes users)
+/opt/keycloak/bin/kcadm.sh export --realm opendesk --dir /backup/keycloak
 
-# Export user mappings
-python export_mappings.py --output-mappings.json
+# Backup UCS/UDM
+udm-cli backup --output /backup/ucs/
 
-# Restore from backup
-python import_users.py --input-keycloak-users.json
+# Restore from Keycloak backup
+/opt/keycloak/bin/kcadm.sh import --dir /backup/keycloak --realm opendesk
 ```
 
 ## Documentation

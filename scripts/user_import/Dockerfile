@@ -17,9 +17,15 @@ USER app
 WORKDIR /app
 
 COPY ./lib/ /app/lib/
+COPY ./config/ /app/config/
 COPY ./provision.py /app/
 COPY ./deprovision_disable.py /app/
 COPY ./deprovision_delete.py /app/
+COPY ./deprovision_user.py /app/
+COPY ./sync_users.py /app/
+COPY ./archive_service_user.py /app/
+COPY ./Makefile /app/
+COPY ./.env.example /app/.env.example
 COPY ./requirements.txt /app/
 
 RUN pip install --no-cache-dir --break-system-packages -r /app/requirements.txt

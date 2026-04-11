@@ -98,6 +98,67 @@ backchannelLogout:
       ##
       verbose: {{ env "BACKCHANNEL_LOGOUT_MOODLE_VERBOSE" | default "false" | quote }}
 
+    ## Backchannel logout for ILIAS
+    ##
+    ## ILIAS uses Apache Shibboleth (mod_shib) for SAML authentication.
+    ## Backchannel logout terminates ILIAS sessions when Keycloak logout is triggered.
+    ##
+    ilias:
+      ## Enable SAML backchannel logout for ILIAS
+      ##
+      enabled: {{ env "BACKCHANNEL_LOGOUT_ILIAS_ENABLED" | default "true" | quote }}
+
+      ## Backchannel logout listener endpoint
+      ## Keycloak sends logout requests to this endpoint
+      ##
+      backchannelLogoutUrl: {{ env "BACKCHANNEL_LOGOUT_ILIAS_URL" | default (printf "https://lms.%s/Shibboleth.sso/Logout" .Values.global.domain) | quote }}
+
+      ## Frontchannel logout endpoint (fallback, user-visible redirect)
+      ## Used when backchannel is unavailable or as secondary method
+      ##
+      frontchannelLogoutUrl: {{ env "BACKCHANNEL_LOGOUT_ILIAS_FRONTCHANNEL_URL" | default (printf "https://lms.%s/logout.php" .Values.global.domain) | quote }}
+
+      ## SAML logout bindings supported
+      ## ILIAS Apache Shibboleth supports multiple logout bindings.
+      ##
+      bindings:
+        ## HTTP-Redirect binding: URL parameter-based logout request
+        ## Fast but visible in browser address bar
+        ##
+        httpRedirect: {{ env "BACKCHANNEL_LOGOUT_ILIAS_REDIRECT_BINDING" | default "true" | quote }}
+
+        ## HTTP-POST binding: Form POST-based logout request
+        ## More secure, not visible in address bar
+        ##
+        httpPost: {{ env "BACKCHANNEL_LOGOUT_ILIAS_POST_BINDING" | default "true" | quote }}
+
+        ## SOAP binding: XML-based logout request
+        ## Used for backchannel logout (server-to-server)
+        ##
+        soap: {{ env "BACKCHANNEL_LOGOUT_ILIAS_SOAP_BINDING" | default "true" | quote }}
+
+      ## Logout request signature requirements
+      ##
+      signature:
+        ## Verify signature on logout requests from Keycloak
+        ##
+        requireSignedRequests: {{ env "BACKCHANNEL_LOGOUT_ILIAS_REQUIRE_SIGNED_REQUESTS" | default "true" | quote }}
+
+        ## Sign logout responses sent to Keycloak
+        ##
+        signResponses: {{ env "BACKCHANNEL_LOGOUT_ILIAS_SIGN_RESPONSES" | default "true" | quote }}
+
+      ## Session termination timeout
+      ## Time to wait for ILIAS session cleanup before considering logout failed
+      ## (in seconds)
+      ##
+      sessionTerminationTimeout: {{ env "BACKCHANNEL_LOGOUT_ILIAS_TIMEOUT" | default "30" | quote }}
+
+      ## Enable verbose logging for debug
+      ## Useful for troubleshooting backchannel logout issues
+      ##
+      verbose: {{ env "BACKCHANNEL_LOGOUT_ILIAS_VERBOSE" | default "false" | quote }}
+
     ## Backchannel logout for BigBlueButton
     ##
     ## BigBlueButton uses SAML for authentication integration.

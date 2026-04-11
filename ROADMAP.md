@@ -44,9 +44,9 @@ German universities authenticate via the DFN-AAI federation (Shibboleth IdP). op
 SAML Service Provider within this federation.
 
 - [ ] Register openDesk Edu as a SAML SP in DFN-AAI
-- [ ] Support standard eduGAIN attributes (`eduPersonAffiliation`, `mail`, `displayName`, `persistentId`)
-- [ ] Document federation metadata generation for deployers
-- [ ] Support Shibboleth IdP as external identity provider (for universities that already run one)
+- [x] Support standard eduGAIN attributes (`eduPersonAffiliation`, `mail`, `displayName`, `persistentId`)
+- [x] Document federation metadata generation for deployers
+- [x] Support Shibboleth IdP as external identity provider (for universities that already run one)
 - [ ] Test with DFN-AAI test federation (`https://www.aai.dfn.de/`)
 
 ### Semester Lifecycle Management
@@ -54,10 +54,10 @@ SAML Service Provider within this federation.
 Universities run on semester cycles (Wintersemester, Sommersemester). Courses, enrollments, and access
 need to follow this rhythm.
 
-- [ ] Course provisioning API (create/archive courses per semester)
-- [ ] Role-based access control tied to semester enrollment (instructor, student, tutor)
-- [ ] Automated course archival at semester end
-- [ ] Integration hook for campus management systems (HIS/LSF)
+- [x] Course provisioning API (create/archive courses per semester)
+- [x] Role-based access control tied to semester enrollment (instructor, student, tutor)
+- [x] Automated course archival at semester end
+- [x] Integration hook for campus management systems (HIS/LSF)
 
 ### Backchannel Logout
 
@@ -73,10 +73,10 @@ be terminated.
 Automate the complete user lifecycle — from account creation to permanent deletion — using the
 existing `scripts/user_import/` tooling.
 
-- [ ] Clean up and migrate `user_import` tooling from legacy repo into `scripts/user_import/`
-- [ ] Configurable SAML account linking via Keycloak admin API (federated-identity endpoints)
-- [ ] Two-phase deprovisioning: disable (6-month grace period) → permanent delete
-- [ ] UCS/UDM REST API integration for provisioning (LDAP groups, CSV/ODS import)
+- [x] Clean up and migrate `user_import` tooling from legacy repo into `scripts/user_import/`
+- [x] Configurable SAML account linking via Keycloak admin API (federated-identity endpoints)
+- [x] Two-phase deprovisioning: disable (6-month grace period) → permanent delete
+- [x] UCS/UDM REST API integration for provisioning (LDAP groups, CSV/ODS import)
 - [ ] Docker image for standalone execution
 - [ ] Documentation and operational runbook
 

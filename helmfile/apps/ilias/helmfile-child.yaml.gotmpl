@@ -9,10 +9,13 @@ releases:
     wait: true
     values:
       - "values.yaml.gotmpl"
+      - "values-backchannel.yaml.gotmpl"
+      {{- if .Values.customization.release.ilias }}
       {{- range .Values.customization.release.ilias }}
       - {{ . }}
       {{- end }}
-    installed: {{ .Values.apps.ilias.enabled }}
+      {{- end }}
+    installed: {{ .Values.apps.ilias.enabled | default true }}
     timeout: 1800
 
 commonLabels:

@@ -1,0 +1,98 @@
+# SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+# SPDX-License-Identifier: Apache-2.0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hisinone-proxy.fullname" . }}
+  labels:
+{{ include "hisinone-proxy.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "hisinone-proxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "hisinone-proxy.selectorLabels" . | nindent 8 }}
+{{ include "hisinone-proxy.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: hisinone-proxy
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.service.port }}
+          protocol: TCP
+{{- if .Values.tcpListener.enabled }}
+        - name: tcp
+          containerPort: {{ .Values.tcpListener.port }}
+          protocol: TCP
+{{- end }}
+        env:
+        - name: HIS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "hisinone-proxy.fullname" . }}
+              key: his-username
+        - name: HIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "hisinone-proxy.fullname" . }}
+              key: his-password
+        - name: HIS_ENDPOINT
+          value: {{ .Values.hisinone.endpoint | quote }}
+        - name: HIS_SSL_VERIFY
+          value: {{ .Values.hisinone.sslVerify | quote }}
+        - name: DB_HOST
+          value: {{ include "hisinone-proxy.postgresql.host" . | quote }}
+        - name: DB_USER
+          value: {{ include "hisinone-proxy.postgresql.username" . | quote }}
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "hisinone-proxy.postgresql.fullname" . }}
+              key: password
+        - name: DB_NAME
+          value: {{ include "hisinone-proxy.postgresql.database" . | quote }}
+        - name: KEYCLOAK_LDAP_BASE
+          value: {{ .Values.targets.keycloak.ldapBase | quote }}
+        resources: {{ .Values.resources | toYaml | nindent 10 }}
+{{- if .Values.livenessProbe.enabled }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.livenessProbe.path }}
+            port: http
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+{{- end }}
+{{- if .Values.readinessProbe.enabled }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.readinessProbe.path }}
+            port: http
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+{{- end }}
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+        - name: data
+          mountPath: /app/data
+      volumes:
+      - name: config
+        configMap:
+          name: {{ include "hisinone-proxy.fullname" . }}-config
+{{- if .Values.postgresql.enabled }}
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-hisinone-proxy-data
+{{- else }}
+      - name: data
+        emptyDir: {}
+{{- end }}

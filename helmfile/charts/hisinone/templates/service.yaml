@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+# SPDX-License-Identifier: Apache-2.0
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hisinone-proxy.fullname" . }}
+  labels:
+{{ include "hisinone-proxy.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: http
+    protocol: TCP
+    name: http
+{{- if .Values.tcpListener.enabled }}
+  - port: {{ .Values.tcpListener.port }}
+    targetPort: tcp
+    protocol: TCP
+    name: tcp
+{{- end }}
+  selector:
+{{ include "hisinone-proxy.selectorLabels" . | nindent 4 }}

@@ -33,8 +33,30 @@ class Settings(BaseSettings):
     keycloak_admin_password: Optional[str] = None
     keycloak_client_id: str = "admin-cli"
 
+    hisinone_api_url: str = ""
+    hisinone_username: str = ""
+    hisinone_password: str = ""
+    hisinone_soap_endpoint: str = "/hisinone/rest/soap"
     hisinone_webhook_secret: Optional[str] = None
     hisinone_webhook_port: int = 8001
+
+    marvin_api_url: Optional[str] = None
+    marvin_client_id: Optional[str] = None
+    marvin_client_secret: Optional[str] = None
+    marvin_webhook_secret: Optional[str] = None
+    marvin_webhook_port: int = 8002
+
+    caldav_url: str = ""
+    caldav_username: str = ""
+    caldav_password: str = ""
+    caldav_verify_ssl: bool = True
+
+    bbb_url: str = ""
+    bbb_secret: str = ""
+
+    opencloud_url: str = ""
+    opencloud_username: str = ""
+    opencloud_password: str = ""
 
 
 @lru_cache

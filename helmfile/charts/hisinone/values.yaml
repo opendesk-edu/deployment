@@ -1,0 +1,88 @@
+# SPDX-FileCopyrightText: 2026 openDesk Edu Contributors
+# SPDX-License-Identifier: Apache-2.0
+
+image:
+  repository: ghcr.io/opendesk-edu/hisinone-proxy
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
+
+# TCP event listener port
+tcpListener:
+  port: 9000
+  enabled: true
+
+# HISinOne SOAP configuration
+hisinone:
+  endpoint: https://hisinone.university.de/qisserver/services2/
+  username: ""
+  password: ""
+  sslVerify: true
+
+# Database configuration
+postgresql:
+  enabled: true
+  auth:
+    database: hisinone_proxy
+    username: hisinone
+    password: ""
+  primary:
+    persistence:
+      enabled: true
+      size: 10Gi
+
+# Service targets configuration
+targets:
+  ilias:
+    enabled: true
+    endpoint: https://lms.opendesk.example.com
+  keycloak:
+    enabled: true
+    ldapBase: ou=users,dc=opendesk,dc=edu
+  opencloud:
+    enabled: false
+  zammad:
+    enabled: false
+
+# Resources
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Health probes
+livenessProbe:
+  enabled: true
+  path: /health
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  enabled: true
+  path: /health
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}
+
+# Pod annotations
+podAnnotations: {}

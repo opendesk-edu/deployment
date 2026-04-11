@@ -503,6 +503,83 @@ class HISinOneClient:
                 },
             ]
 
+        elif "leistung" in endpoint_lower or "pruefungsleistung" in endpoint_lower:
+            # Exam results (Prüfungsleistungen) - check BEFORE "pruefung" to avoid matching
+            return [
+                {
+                    "veranstaltung_id": "LV-001",
+                    "veranstaltungstitel": "Einführung in die Informatik",
+                    "note": 1.0,
+                    "punkte": 5,
+                    "pruefungsdatum": "20270120",
+                    "versuche": 1,
+                    "status": "bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-001",
+                    "veranstaltungstitel": "Programmierung I",
+                    "note": 1.3,
+                    "punkte": 8,
+                    "pruefungsdatum": "20270215",
+                    "versuche": 1,
+                    "status": "bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-001",
+                    "veranstaltungstitel": "Algorithmen und Datenstrukturen",
+                    "note": 2.0,
+                    "punkte": 10,
+                    "pruefungsdatum": "20270228",
+                    "versuche": 1,
+                    "status": "bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-002",
+                    "veranstaltungstitel": "Mathematik I",
+                    "note": 3.7,
+                    "punkte": 8,
+                    "pruefungsdatum": "20270121",
+                    "versuche": 1,
+                    "status": "bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-002",
+                    "veranstaltungstitel": "Lineare Algebra",
+                    "note": 4.0,
+                    "punkte": 10,
+                    "pruefungsdatum": "20270210",
+                    "versuche": 2,
+                    "status": "bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-003",
+                    "veranstaltungstitel": "Datenbanken",
+                    "note": 4.3,
+                    "punkte": 5,
+                    "pruefungsdatum": "20270301",
+                    "versuche": 2,
+                    "status": "nicht bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-004",
+                    "veranstaltungstitel": "Software Engineering",
+                    "note": 5.0,
+                    "punkte": 8,
+                    "pruefungsdatum": "20270315",
+                    "versuche": 3,
+                    "status": "nicht bestanden",
+                },
+                {
+                    "veranstaltung_id": "LV-005",
+                    "veranstaltungstitel": "Operating Systems",
+                    "note": 0.0,
+                    "punkte": 10,
+                    "pruefungsdatum": "20270320",
+                    "versuche": 1,
+                    "status": "withdrawn",
+                },
+            ]
+
         elif "pruefung" in endpoint_lower:
             # Exams
             course_id = params.get("course_id") if params else None

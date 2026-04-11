@@ -24,6 +24,16 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install Python dependencies
+        run: |
+          cd scripts/semester-provisioning
+          pip install pytest httpx
+
+      - name: Run Python tests
+        run: |
+          cd scripts/semester-provisioning
+          python -m pytest tests/ -v
+
       - name: Install yamllint
         run: pip install yamllint
 

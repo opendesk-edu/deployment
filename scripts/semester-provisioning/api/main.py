@@ -13,7 +13,6 @@ settings = get_settings()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     yield
-    pass
 
 
 def create_app() -> FastAPI:
@@ -38,14 +37,6 @@ def create_app() -> FastAPI:
     app.include_router(semesters.router)
     app.include_router(enrollments.router)
     app.include_router(archival.router)
-
-    @app.get("/health", tags=["health"])
-    async def health_check() -> dict:
-        return {"status": "healthy"}
-
-    @app.get("/ready", tags=["health"])
-    async def readiness_check() -> dict:
-        return {"status": "ready"}
 
     return app
 

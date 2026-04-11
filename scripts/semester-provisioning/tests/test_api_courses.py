@@ -173,13 +173,3 @@ def test_bulk_enroll(client: TestClient):
             assert enr["user_id"].startswith("user-") or enr.get("id", "").startswith(
                 "enr_"
             )
-
-
-def test_health_check(client: TestClient):
-    response = client.get("/health")
-    assert response.status_code == 200
-    # If the API exposes a status field, ensure it's healthy
-    if isinstance(response.json(), dict):
-        status = response.json().get("status")
-        if status:
-            assert status.lower() in {"healthy", "ok"}

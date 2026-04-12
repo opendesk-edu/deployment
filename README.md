@@ -20,7 +20,7 @@ one-command Kubernetes deploy with unified Keycloak SSO
 [![Kubernetes](https://img.shields.io/badge/Platform-Kubernetes-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io)
 [![Helm](https://img.shields.io/badge/Deploy-Helm-0F1689?logo=helm&logoColor=white)](https://helm.sh)
 [![Upstream](https://img.shields.io/badge/Upstream-openDesk_CE_v1.13.x-green)](https://www.opencode.de/en/opendesk)
-[![Test](https://github.com/opendesk-edu/deployment/actions/workflows/test.yml/badge.svg)](https://github.com/opendesk-edu/deployment/actions/workflows/test.yml)
+[![Test](https://github.com/opendesk-edu/opendesk-edu/actions/workflows/test.yml/badge.svg)](https://github.com/opendesk-edu/opendesk-edu/actions/workflows/test.yml)
 
 <br/>
 
@@ -45,11 +45,11 @@ all integrated with openDesk's existing Keycloak SSO and portal. Deploy everythi
 
 | Language | Source | HTML |
 |:---------|:-------|:-----|
-| 🇩🇪 Deutsch | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.html) |
-| 🇬🇧 English | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.html) |
-| 🇫🇷 Français | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.html) |
-| 🇪🇸 Español | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.html) |
-| 🇨🇳 中文 | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.html) |
+| 🇩🇪 Deutsch | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.html) |
+| 🇬🇧 English | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.html) |
+| 🇫🇷 Français | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.html) |
+| 🇪🇸 Español | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.html) |
+| 🇨🇳 中文 | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.html) |
 
 </div>
 
@@ -181,11 +181,11 @@ drop-in alternatives, not replacements. This is a **superset** of openDesk CE, n
 
 | Event | Language | Source | HTML |
 |:------|:--------|:-------|:-----:|
-| CLT 2026 | 🇩🇪 Deutsch | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.html) |
-| CLT 2026 | 🇬🇧 English | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.html) |
-| CLT 2026 | 🇫🇷 Français | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.html) |
-| CLT 2026 | 🇪🇸 Español | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.html) |
-| CLT 2026 | 🇨🇳 中文 | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.md) | [▶ View](https://opendesk-edu.github.io/deployment/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.html) |
+| CLT 2026 | 🇩🇪 Deutsch | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk.html) |
+| CLT 2026 | 🇬🇧 English | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-en.html) |
+| CLT 2026 | 🇫🇷 Français | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-fr.html) |
+| CLT 2026 | 🇪🇸 Español | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-es.html) |
+| CLT 2026 | 🇨🇳 中文 | [Markdown](./docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.md) | [▶ View](https://opendesk-edu.github.io/opendesk-edu/docs/presentations/linuxtag-2026/linuxtag-2026-opendesk-zh.html) |
 
 ---
 
@@ -204,13 +204,13 @@ drop-in alternatives, not replacements. This is a **superset** of openDesk CE, n
 
 ## 💬 Feedback & Issues
 
-Found a bug or have a feature request? Please [open an issue](https://github.com/opendesk-edu/deployment/issues).
+Found a bug or have a feature request? Please [open an issue](https://github.com/opendesk-edu/opendesk-edu/issues).
 
 ## 🔗 Repository Mirroring
 
 This repository is automatically synchronized between GitHub and Codeberg:
 
-- **GitHub:** https://github.com/opendesk-edu/deployment
+- **GitHub:** https://github.com/opendesk-edu/opendesk-edu
 - **Codeberg:** https://codeberg.org/opendesk-edu/opendesk-edu
 
 Both repositories are kept in sync via automated CI/CD workflows. Pushes to either platform sync to the other within 1-2 minutes. See [sync documentation](./docs/maintenance/github-codeberg-sync.md) for details.

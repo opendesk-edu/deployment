@@ -269,7 +269,7 @@ In the realm SSO settings (Keycloak 26+), import the generated metadata:
 ## Help and Support
 
 - Script help: `./scripts/federation/generate-metadata.sh --help`
-- Issue tracking: [opendesk-edu GitHub Issues](https://github.com/opendesk-edu/deployment/issues)
+- Issue tracking: [opendesk-edu GitHub Issues](https://github.com/opendesk-edu/opendesk-edu/issues)
 - DFN-AAI support: [support@aai.dfn.de](mailto:support@aai.dfn.de)
 
 ## License

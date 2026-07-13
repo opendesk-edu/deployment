@@ -89,7 +89,7 @@ persistence:
 podAnnotations:
   intents.otterize.com/service-name: "postgresql"
   argocd.argoproj.io/hook: "PostSync"
-  argocd.argoproj.io/hook-delete-policy: "BeforeHookCreation"
+  argocd.argoproj.io/hook-delete-policy: "HookSucceeded"
   {{- with .Values.annotations.servicesExternalPostgresql.pod}}
   {{ . | toYaml | nindent 2 }}
   {{- end }}

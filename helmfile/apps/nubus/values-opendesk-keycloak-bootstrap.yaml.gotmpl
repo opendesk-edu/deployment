@@ -798,7 +798,7 @@ containerSecurityContext:
 
 additionalAnnotations:
   argocd.argoproj.io/hook: "Sync"
-  argocd.argoproj.io/hook-delete-policy: "BeforeHookCreation"
+  argocd.argoproj.io/hook-delete-policy: "HookSucceeded"
   {{- with .Values.annotations.nubusKeycloakBootstrap.additional }}
   {{. | toYaml | nindent 2 }}
   {{- end }}

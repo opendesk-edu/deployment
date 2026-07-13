@@ -1267,11 +1267,11 @@ nubusSelfServiceConsumer:
       tag: {{ .Values.images.nubusWaitForDependency.tag }}
 
 # Nubus services
-nubusStackDataUms:
+  nubusStackDataUms:
   additionalAnnotations:
     intents.otterize.com/service-name: "ums-stack-data-ums"
     argocd.argoproj.io/hook: "Sync"
-    argocd.argoproj.io/hook-delete-policy: "BeforeHookCreation"
+    argocd.argoproj.io/hook-delete-policy: "HookSucceeded"
     {{- with .Values.annotations.nubusStackDataUms.additional }}
     {{ . | toYaml | nindent 4 }}
     {{- end }}
@@ -1637,7 +1637,7 @@ nubusUmcGateway:
 nubusKeycloakBootstrap:
   additionalAnnotations:
     argocd.argoproj.io/hook: "Sync"
-    argocd.argoproj.io/hook-delete-policy: "BeforeHookCreation"
+    argocd.argoproj.io/hook-delete-policy: "HookSucceeded"
     {{- with .Values.annotations.nubusKeycloakBootstrapNubus.additional }}
     {{ . | toYaml | nindent 4 }}
     {{- end }}

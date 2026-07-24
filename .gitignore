@@ -94,3 +94,6 @@ k8up-*.yaml
 *.key
 *.crt
 *.p12
+
+# Allow tracking of SOPS-encrypted secret files
+!*secrets*.enc.yaml

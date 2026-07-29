@@ -13,6 +13,24 @@ metadata:
       and restricts the container to its minimal privileges.
 spec:
   background: true
+  # BEGIN: Exclusions for charts that need security context fixes
+  # These are tracked in: https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk/-/issues
+  # TODO: Remove exclusions once charts are updated
+  exclude:
+    any:
+    - resources:
+        namespaces: ["opendesk"]
+        names:
+          - "xwiki-*"
+          - "collabora-*"
+          - "jitsi-*"
+          - "element-*"
+          - "cryptpad-*"
+    - resources:
+        kinds: ["StatefulSet"]
+        names:
+          - "open-xchange-*"
+  # END: Exclusions
   rules:
     - name: "require-ro-rootfs"
       match:

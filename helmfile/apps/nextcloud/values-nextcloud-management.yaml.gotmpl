@@ -32,17 +32,22 @@ configuration:
         key: {{ .Values.secrets.nextcloud.adminPassword.key | quote }}
 
   antivirus:
-    enabled: true
     {{- if .Values.antivirus.icap.host }}
+    enabled: true
     host: {{ .Values.antivirus.icap.host | quote }}
-    port: {{ .Values.antivirus.icap.port | quote }}
+    port: {{ .Values.antivirus.icap.port }}
     {{- else }}
     {{- if .Values.apps.clamavDistributed.enabled }}
+    enabled: true
     host: "clamav-icap"
-    {{- else if .Values.apps.clamavSimple.enabled }}
-    host: "clamav-simple"
-    {{- end }}
     port: 1344
+    {{- else if .Values.apps.clamavSimple.enabled }}
+    enabled: true
+    host: "clamav-simple"
+    port: 1344
+    {{- else }}
+    enabled: false
+    {{- end }}
     {{- end }}
 
   cache:

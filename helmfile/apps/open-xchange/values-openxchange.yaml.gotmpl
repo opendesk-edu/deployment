@@ -1082,17 +1082,22 @@ appsuite:
       /opt/open-xchange/etc/AdminUser.properties:
         USERNAME_CHANGEABLE: "true"
       /opt/open-xchange/etc/antivirus.properties:
-        com.openexchange.antivirus.enabled: "true"
         {{- if .Values.antivirus.icap.host }}
+        com.openexchange.antivirus.enabled: "true"
         com.openexchange.antivirus.server: {{ .Values.antivirus.icap.host | quote }}
         com.openexchange.antivirus.port: {{ .Values.antivirus.icap.port | quote }}
         {{- else }}
         {{- if .Values.apps.clamavDistributed.enabled }}
+        com.openexchange.antivirus.enabled: "true"
         com.openexchange.antivirus.server: "clamav-icap"
-        {{- else if .Values.apps.clamavSimple.enabled }}
-        com.openexchange.antivirus.server: "clamav-simple"
-        {{- end }}
         com.openexchange.antivirus.port: "1344"
+        {{- else if .Values.apps.clamavSimple.enabled }}
+        com.openexchange.antivirus.enabled: "true"
+        com.openexchange.antivirus.server: "clamav-simple"
+        com.openexchange.antivirus.port: "1344"
+        {{- else }}
+        com.openexchange.antivirus.enabled: "false"
+        {{- end }}
         {{- end }}
         com.openexchange.antivirus.maxFileSize: "1024"
       /opt/open-xchange/etc/filestore-s3.properties:

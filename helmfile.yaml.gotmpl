@@ -6,6 +6,10 @@ bases:
   - "{{ requiredEnv "PWD" }}/helmfile/bases/environments.yaml.gotmpl"
 ---
 # yamllint disable
+helmDefaults:
+  wait: true
+  waitForJobs: true
+  timeout: 900
 helmfiles:
   - path: "./helmfile-defaults.yaml.gotmpl"
     values:
